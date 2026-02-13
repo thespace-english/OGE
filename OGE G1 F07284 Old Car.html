@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE G1 F07284 Old Car — Grammar</title>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --accent: #0071e3;
+            --text: #1d1d1f;
+            --secondary: #86868b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            background: var(--card);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .header p {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .user-section {
+            margin-bottom: 35px;
+            padding: 20px;
+            background: #f9f9fb;
+            border-radius: 16px;
+        }
+
+        .user-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+        }
+        
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .story-text {
+            line-height: 2.1;
+            font-size: 18px;
+            color: #333;
+            text-align: justify;
+        }
+
+        .gap {
+            display: inline-block;
+            position: relative;
+            margin: 0 4px;
+            vertical-align: baseline;
+        }
+
+        .gap input {
+            border: none;
+            border-bottom: 2px solid #d2d2d7;
+            background: rgba(0, 113, 227, 0.03);
+            width: 160px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--accent);
+            padding: 2px 0;
+            outline: none;
+        }
+
+        .gap input:focus { border-bottom-color: var(--accent); background: rgba(0,113,227,0.08); }
+
+        .hint {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: -2px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        button:hover { background: #0077ed; transform: scale(1.01); }
+        button:disabled { background: #d2d2d7; cursor: not-allowed; }
+
+        #resultMsg {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 500;
+            background: #f2faf3;
+            color: #1a7d32;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Dylan's Old Car</h1>
+        <p>Grammar Training: Tenses & Comparison</p>
+    </div>
+
+    <div class="user-section">
+        <label>Student Name</label>
+        <input type="text" id="userName" placeholder="Type your name...">
+    </div>
+
+    <div class="story-text">
+        Dylan had a very old car. It was 20 years old. But the faded paint made it look even 
+        <div class="gap">
+            <input type="text" class="q" data-ans="OLDER" autocomplete="off">
+            <span class="hint">OLD</span>
+        </div> 
+        than that. It 
+        <div class="gap">
+            <input type="text" class="q" data-ans="WAS" autocomplete="off">
+            <span class="hint">BE</span>
+        </div> 
+        a shame to drive a car that looked like that and Dylan took it to a paint shop. 
+        There the car 
+        <div class="gap">
+            <input type="text" class="q" data-ans="WASPAINTED" autocomplete="off">
+            <span class="hint">PAINT</span>
+        </div> 
+        dark blue for $200. Dylan was very pleased with the new look. The only problem was that the car stereo 
+        <div class="gap">
+            <input type="text" class="q" data-ans="DIDNOTWORK" data-alt="DIDN'TWORK" autocomplete="off">
+            <span class="hint">NOT WORK</span>
+        </div> 
+        properly. Dylan managed to fix it himself. Then one day Dylan had a new problem – petrol. He could smell it while he 
+        <div class="gap">
+            <input type="text" class="q" data-ans="WASDRIVING" autocomplete="off">
+            <span class="hint">DRIVE</span>
+        </div> 
+        his car. Dylan asked himself “Am I driving a bomb? Could the car explode at any minute?” He knew the car manual by heart. He had car problems at least once a month, and he always found a way to fix 
+        <div class="gap">
+            <input type="text" class="q" data-ans="THEM" autocomplete="off">
+            <span class="hint">THEY</span>
+        </div> 
+        himself. However, this time, it was a job for a mechanic. So he 
+        <div class="gap">
+            <input type="text" class="q" data-ans="TOOK" autocomplete="off">
+            <span class="hint">TAKE</span>
+        </div> 
+        his car to the closest service station. The mechanic said they 
+        <div class="gap">
+            <input type="text" class="q" data-ans="WOULDTEST" autocomplete="off">
+            <span class="hint">TEST</span>
+        </div> 
+        the car to find out what the problem was. He told Dylan to come back in an hour. When Dylan came back, the mechanic said, “The problem is with the fuel pump. You need a new one. It costs $400.” 
+        “Let me think about it. I 
+        <div class="gap">
+            <input type="text" class="q" data-ans="WILLGIVE" autocomplete="off">
+            <span class="hint">GIVE</span>
+        </div> 
+        you a call when I decide what to do.” But Dylan had already decided what to do.
+    </div>
+
+    <button id="submitBtn" onclick="submitFinal()">Check Answers & Save</button>
+    <div id="resultMsg"></div>
+</div>
+
+<script>
+    async function submitFinal() {
+        const nameField = document.getElementById('userName');
+        const name = nameField.value.trim();
+        if (!name) { alert("Enter your name!"); return; }
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec'; 
+        const gameTitle = 'OGE G1 F07284 Old Car'; 
+        
+        let score = 0;
+        let details = [];
+        const questions = document.querySelectorAll('.q');
+
+        questions.forEach((input, index) => {
+            const userVal = input.value.trim().toUpperCase().replace(/[\s']/g, "");
+            const correctVal = input.getAttribute('data-ans');
+            const altVal = (input.getAttribute('data-alt') || "").replace(/[\s']/g, "");
+
+            if (userVal === correctVal || (altVal && userVal === altVal)) {
+                score++;
+                input.style.color = "#34c759";
+                input.style.borderBottomColor = "#34c759";
+            } else {
+                input.style.color = "#ff3b30";
+                input.style.borderBottomColor = "#ff3b30";
+            }
+            details.push(`${index + 1}:${input.value.trim() || '---'}`);
+        });
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = "Syncing...";
+
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    gameTitle: gameTitle,
+                    name: name,
+                    score: `${score}/${questions.length}`,
+                    details: details.join('; ')
+                })
+            });
+
+            const resultDiv = document.getElementById('resultMsg');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Great job! Your score: ${score}/${questions.length}. Results sent to your teacher.`;
+            btn.style.display = 'none';
+        } catch (e) {
+            alert("Error saving results.");
+            btn.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>
