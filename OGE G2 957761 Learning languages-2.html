@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE G2 957761 Learning languages-2 — Assessment</title>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --accent: #0071e3;
+            --text: #1d1d1f;
+            --secondary: #86868b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            background: var(--card);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .header p {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .user-section {
+            margin-bottom: 35px;
+            padding: 20px;
+            background: #f9f9fb;
+            border-radius: 16px;
+        }
+
+        .user-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+        }
+        
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        #userName:focus { border-color: var(--accent); }
+
+        .story-text {
+            line-height: 2.1;
+            font-size: 18px;
+            color: #333;
+            text-align: justify;
+        }
+
+        .gap {
+            display: inline-block;
+            position: relative;
+            margin: 0 4px;
+            vertical-align: baseline;
+        }
+
+        .gap input {
+            border: none;
+            border-bottom: 2px solid #d2d2d7;
+            background: rgba(0, 113, 227, 0.03);
+            width: 155px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--accent);
+            padding: 2px 0;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .gap input:focus {
+            border-bottom-color: var(--accent);
+            background: rgba(0, 113, 227, 0.08);
+        }
+
+        .hint {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: -2px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        button:hover { background: #0077ed; transform: scale(1.01); }
+        button:disabled { background: #d2d2d7; cursor: not-allowed; }
+
+        #resultMsg {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 500;
+            background: #f2faf3;
+            color: #1a7d32;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Learning Languages (Part 2)</h1>
+        <p>Strategies for Success</p>
+    </div>
+
+    <div class="user-section">
+        <label>Student Name</label>
+        <input type="text" id="userName" placeholder="Enter your full name...">
+    </div>
+
+    <div class="story-text">
+        Learning languages is important nowadays. It is interesting and 
+        <div class="gap">
+            <input type="text" class="q" data-ans="USEFUL" autocomplete="off">
+            <span class="hint">USE</span>
+        </div>. 
+        Language skills help people to travel, study, and establish 
+        <div class="gap">
+            <input type="text" class="q" data-ans="PROFESSIONAL" autocomplete="off">
+            <span class="hint">PROFESSION</span>
+        </div> 
+        links with colleagues from other countries. Some people say that learning languages 
+        is easy but others strongly 
+        <div class="gap">
+            <input type="text" class="q" data-ans="DISAGREE" autocomplete="off">
+            <span class="hint">AGREE</span>
+        </div>. 
+        They say that learning languages takes a lot of time and they are not happy with 
+        their progress anyway. Meanwhile, there are some strategies that can make you a 
+        successful language 
+        <div class="gap">
+            <input type="text" class="q" data-ans="LEARNER" autocomplete="off">
+            <span class="hint">LEARN</span>
+        </div> 
+        and save your time. The first idea is watching films in the original. If the 
+        films are 
+        <div class="gap">
+            <input type="text" class="q" data-ans="INTERESTING" autocomplete="off">
+            <span class="hint">INTEREST</span>
+        </div>, 
+        learning is just fun, not hard work. Online and live 
+        <div class="gap">
+            <input type="text" class="q" data-ans="COMMUNICATION" autocomplete="off">
+            <span class="hint">COMMUNICATE</span>
+        </div> 
+        with people in the language you are learning also helps a lot.
+    </div>
+
+    <button id="submitBtn" onclick="submitFinal()">Submit Results</button>
+    <div id="resultMsg"></div>
+</div>
+
+<script>
+    async function submitFinal() {
+        const nameField = document.getElementById('userName');
+        const name = nameField.value.trim();
+        
+        if (!name) {
+            alert("Please enter your name.");
+            return;
+        }
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec'; 
+        const gameTitle = 'OGE G2 957761 Learning languages-2'; 
+        
+        let score = 0;
+        let details = [];
+        const questions = document.querySelectorAll('.q');
+        
+        // Correct answers
+        const answers = ["USEFUL", "PROFESSIONAL", "DISAGREE", "LEARNER", "INTERESTING", "COMMUNICATION"];
+
+        questions.forEach((input, index) => {
+            const userVal = input.value.trim().toUpperCase();
+            if (userVal === answers[index]) {
+                score++;
+                input.style.color = "#34c759";
+                input.style.borderBottomColor = "#34c759";
+            } else {
+                input.style.color = "#ff3b30";
+                input.style.borderBottomColor = "#ff3b30";
+            }
+            details.push(`${index + 1}:${userVal || 'EMPTY'}`);
+        });
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = "Sending Data...";
+
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    gameTitle: gameTitle,
+                    name: name,
+                    score: `${score}/${questions.length}`,
+                    details: details.join('; ')
+                })
+            });
+
+            document.getElementById('resultMsg').style.display = 'block';
+            document.getElementById('resultMsg').innerHTML = `All set! Score: ${score}/${questions.length}. Results saved in the teacher's log.`;
+            btn.style.display = 'none';
+        } catch (e) {
+            alert("Connection error.");
+            btn.disabled = false;
+            btn.textContent = "Submit Results";
+        }
+    }
+</script>
+
+</body>
+</html>

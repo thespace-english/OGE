@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE G2 2D0D65 Tadeus Bodnar — Assessment</title>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --accent: #0071e3;
+            --text: #1d1d1f;
+            --secondary: #86868b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            background: var(--card);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .header p {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .user-section {
+            margin-bottom: 35px;
+            padding: 20px;
+            background: #f9f9fb;
+            border-radius: 16px;
+        }
+
+        .user-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+        }
+        
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        #userName:focus { border-color: var(--accent); }
+
+        .story-text {
+            line-height: 2.1;
+            font-size: 18px;
+            color: #333;
+            text-align: justify;
+        }
+
+        .gap {
+            display: inline-block;
+            position: relative;
+            margin: 0 4px;
+            vertical-align: baseline;
+        }
+
+        .gap input {
+            border: none;
+            border-bottom: 2px solid #d2d2d7;
+            background: rgba(0, 113, 227, 0.03);
+            width: 145px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--accent);
+            padding: 2px 0;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .gap input:focus {
+            border-bottom-color: var(--accent);
+            background: rgba(0, 113, 227, 0.08);
+        }
+
+        .hint {
+            display: block;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: -2px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        button:hover { background: #0077ed; transform: scale(1.01); }
+        button:disabled { background: #d2d2d7; cursor: not-allowed; }
+
+        #resultMsg {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 500;
+            background: #f2faf3;
+            color: #1a7d32;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>The Extravagant Hairdresser</h1>
+        <p>Word Formation Practice</p>
+    </div>
+
+    <div class="user-section">
+        <label>Student Name</label>
+        <input type="text" id="userName" placeholder="Type your name here...">
+    </div>
+
+    <div class="story-text">
+        Have you heard of a Tadeus Bodnar? He is a 
+        <div class="gap">
+            <input type="text" class="q" data-ans="FAMOUS" autocomplete="off">
+            <span class="hint">FAME</span>
+        </div> 
+        Hungarian hairdresser. Not long ago he stopped using the 
+        <div class="gap">
+            <input type="text" class="q" data-ans="TRADITIONAL" autocomplete="off">
+            <span class="hint">TRADITION</span>
+        </div> 
+        scissors and comb. Now his instruments are axes, irons and vacuum cleaners. 
+        Now he is very 
+        <div class="gap">
+            <input type="text" class="q" data-ans="SUCCESSFUL" autocomplete="off">
+            <span class="hint">SUCCESS</span>
+        </div> 
+        and happy because with his innovative techniques he can express himself better. 
+        He cuts hair in his shop in Budapest by chopping it with an axe. Then he styles 
+        the hair using a vacuum cleaner, or straightens it with an iron. It’s difficult 
+        to believe but the extravagant hairdresser is very popular. Many people find 
+        him very 
+        <div class="gap">
+            <input type="text" class="q" data-ans="CREATIVE" autocomplete="off">
+            <span class="hint">CREATE</span>
+        </div>. 
+        Every day there’s an 
+        <div class="gap">
+            <input type="text" class="q" data-ans="ENDLESS" autocomplete="off">
+            <span class="hint">END</span>
+        </div> 
+        line of people streaming to his shop. They wish to change their 
+        <div class="gap">
+            <input type="text" class="q" data-ans="APPEARANCE" autocomplete="off">
+            <span class="hint">APPEAR</span>
+        </div> 
+        and have a thrilling, new experience.
+    </div>
+
+    <button id="submitBtn" onclick="submitFinal()">Check & Send Results</button>
+    <div id="resultMsg"></div>
+</div>
+
+<script>
+    async function submitFinal() {
+        const nameField = document.getElementById('userName');
+        const name = nameField.value.trim();
+        
+        if (!name) {
+            alert("Please enter your name.");
+            return;
+        }
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec'; 
+        const gameTitle = 'OGE G2 2D0D65 Tadeus Bodnar'; 
+        
+        let score = 0;
+        let details = [];
+        const questions = document.querySelectorAll('.q');
+        
+        // Correct answers
+        const answers = ["FAMOUS", "TRADITIONAL", "SUCCESSFUL", "CREATIVE", "ENDLESS", "APPEARANCE"];
+
+        questions.forEach((input, index) => {
+            const userVal = input.value.trim().toUpperCase();
+            if (userVal === answers[index]) {
+                score++;
+                input.style.color = "#34c759";
+                input.style.borderBottomColor = "#34c759";
+            } else {
+                input.style.color = "#ff3b30";
+                input.style.borderBottomColor = "#ff3b30";
+            }
+            details.push(`${index + 1}:${userVal || 'EMPTY'}`);
+        });
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = "Syncing with Teacher's Table...";
+
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    gameTitle: gameTitle,
+                    name: name,
+                    score: `${score}/${questions.length}`,
+                    details: details.join('; ')
+                })
+            });
+
+            document.getElementById('resultMsg').style.display = 'block';
+            document.getElementById('resultMsg').innerHTML = `Great work! Score: ${score}/${questions.length}. Results uploaded successfully.`;
+            btn.style.display = 'none';
+        } catch (e) {
+            alert("Connection error. Try again.");
+            btn.disabled = false;
+            btn.textContent = "Check & Send Results";
+        }
+    }
+</script>
+
+</body>
+</html>
