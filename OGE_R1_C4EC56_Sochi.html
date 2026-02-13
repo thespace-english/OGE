@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE R1 C4EC56 Sochi</title>
+    <style>
+        :root {
+            --bg: #e0f2f1; /* Морской бриз */
+            --accent: #00796b; /* Цвет морской волны */
+            --white: #ffffff;
+            --text: #263238;
+            --correct: #34c759;
+            --wrong: #ff3b30;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* ЛЕВАЯ ПАНЕЛЬ: ТЕКСТ И ВОПРОСЫ */
+        .left-panel {
+            flex: 1.4;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .questions-block {
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+        }
+
+        .questions-block h3 { margin-top: 0; font-size: 18px; color: var(--accent); }
+        .questions-block ol { margin-bottom: 0; padding-left: 20px; }
+        .questions-block li { margin-bottom: 8px; font-weight: 500; font-size: 15px; }
+
+        .text-item { margin-bottom: 25px; line-height: 1.6; font-size: 16px; text-align: justify; }
+        .text-letter { 
+            font-weight: 800; 
+            font-size: 20px; 
+            color: var(--accent); 
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        /* ПРАВАЯ ПАНЕЛЬ: ТАБЛИЦА ОТВЕТОВ */
+        .right-panel {
+            flex: 0.7;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .user-section { margin-bottom: 30px; }
+        .user-section label { display:block; font-weight:700; font-size:12px; text-transform:uppercase; margin-bottom:8px; color: #546e7a; }
+        #userName { width: 100%; padding: 12px; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 16px; outline: none; }
+        #userName:focus { border-color: var(--accent); }
+
+        .matching-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .matching-table th {
+            background: #eceff1;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 18px;
+            border: 1px solid #cfd8dc;
+        }
+
+        .answer-select {
+            width: 100%;
+            padding: 12px 5px;
+            font-size: 18px;
+            font-weight: 700;
+            border: 2px solid #cfd8dc;
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            background-color: #fff;
+            transition: 0.3s;
+        }
+
+        .is-correct { border-color: var(--correct) !important; background-color: #e8f5e9 !important; color: #1b5e20; }
+        .is-wrong { border-color: var(--wrong) !important; background-color: #ffebee !important; color: #b71c1c; }
+
+        #submitBtn {
+            width: 100%; padding: 18px; background: var(--accent); color: white;
+            border: none; border-radius: 50px; font-size: 18px; font-weight: 600;
+            cursor: pointer; transition: 0.3s;
+        }
+        #submitBtn:disabled { background: #b0bec5; cursor: default; }
+
+        #resultBox { display: none; margin-top: 20px; text-align: center; font-weight: 700; color: var(--accent); font-size: 16px; }
+
+        @media (max-width: 900px) {
+            .main-wrapper { flex-direction: column; overflow-y: auto; height: auto; }
+            .left-panel, .right-panel { height: auto; overflow: visible; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="left-panel">
+        <div class="questions-block">
+            <h3>Questions:</h3>
+            <ol>
+                <li>What is known about the early years of Sochi?</li>
+                <li>Why is Sochi an attractive place for year-round tourism?</li>
+                <li>What makes Sochi a good place to improve health?</li>
+                <li>What are the most popular natural attractions in Sochi?</li>
+                <li>Where is it better to stay in Sochi to improve health?</li>
+                <li>What sports and cultural events have been held in Sochi?</li>
+                <li>What conditions are created in the city for sports?</li>
+            </ol>
+        </div>
+
+        <div class="text-item"><span class="text-letter">A</span> Sochi is Russia’s subtropical resort city that stretches along the beautiful coast of the Black Sea. With a permanent population of about 500,000 people, it holds the record of the largest resort city in Russia. Its numerous beaches make the city popular in summer. Skiing in the nearby mountains makes it an ideal place for winter holidays too. The city is set in the Krasnodar Krai, which stretches 145 km along the Black Sea, making it the second longest city after Mexico City.</div>
+        
+        <div class="text-item"><span class="text-letter">B</span> The resort city of Sochi has a long history that dates back to Ancient Greek and Roman times. The first Russian settlement on the site was called Fort Alexander. It was founded in 1838 at the Sochi River’s mouth. In fact, Sochi is a relatively new name for the city, as the Russian settlement was first called so only in 1896. The name could be a variation of the term “sshatche” which was used by the local people to mean “place by the sea.”</div>
+        
+        <div class="text-item"><span class="text-letter">C</span> From the very beginning, Sochi has served as a resort area. The discovery of the natural mineral springs there contributed greatly to its fast development as the most popular health resort in Russia. The local mineral springs have a healing effect. A legend says that a local girl bravely wandered into the underworld and brought back its healing waters to the surface as a gift from the spirits below. What is more, the air quality in Sochi is excellent.</div>
+        
+        <div class="text-item"><span class="text-letter">D</span> Sochi is proud of its Caucasian State Nature Biosphere Reserve. It includes a lot of beautiful natural sights. The Agura and Orekhovskaya waterfalls are perhaps the most well-known places to visit. Sochi has a wonderful collection of parks, including a botanical garden with rare and exotic types of tropical and subtropical plants. There you can see amazing rhododendrons, evergreen magnolias with beautiful fragrant flowers, junipers, acacias and massive plane trees.</div>
+        
+        <div class="text-item"><span class="text-letter">E</span> In addition to being famous as a resort city, Sochi is known for its sports facilities. For example, its tennis schools have trained many of the world-famous athletes. With so much local attention to health and exercise, Sochi was the obvious choice to host the 2014 Winter Olympic Games. The recently constructed Coastal Cluster and the Mountain Cluster in Krasnaya Polyana are still widely used for indoor ice events and for downhill and skiing sports.</div>
+        
+        <div class="text-item"><span class="text-letter">F</span> Sochi has long been enjoying the status of the most popular and fashionable spot in Russia. The Russian Formula 1 Grand Prix was held there for a number of years. In addition, Sochi was one of the host cities for the 2018 FIFA World Cup. New Wave, an international contest for young performers of popular music, moved to Sochi in 2015 and has been regularly held there since that time. The largest and brightest summer and winter resort of Russia offers its visitors all kinds of events.</div>
+    </div>
+
+    <div class="right-panel">
+        <div class="user-section">
+            <label>Name</label>
+            <input type="text" id="userName" placeholder="Student name">
+        </div>
+
+        <h3 style="text-align:center;">Answers</h3>
+        <table class="matching-table">
+            <tr><th>A</th><th>B</th><th>C</th></tr>
+            <tr>
+                <td><select class="answer-select" id="ansA"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+                <td><select class="answer-select" id="ansB"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+                <td><select class="answer-select" id="ansC"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+            </tr>
+            <tr><th>D</th><th>E</th><th>F</th></tr>
+            <tr>
+                <td><select class="answer-select" id="ansD"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+                <td><select class="answer-select" id="ansE"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+                <td><select class="answer-select" id="ansF"><option value="">-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></td>
+            </tr>
+        </table>
+
+        <button id="submitBtn" onclick="checkSochi()">Check and Save</button>
+        <div id="resultBox"></div>
+    </div>
+</div>
+
+<script>
+    async function checkSochi() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Please enter your name!"); return; }
+
+        // КЛЮЧИ: A:2, B:1, C:3, D:4, E:7, F:6 (Вопрос 5 лишний)
+        const correct = { A: "2", B: "1", C: "3", D: "4", E: "7", F: "6" };
+        let score = 0;
+        let details = [];
+
+        ["A", "B", "C", "D", "E", "F"].forEach(letter => {
+            const sel = document.getElementById('ans' + letter);
+            const val = sel.value;
+            
+            if (val === correct[letter]) {
+                sel.classList.add('is-correct');
+                score++;
+            } else {
+                if (val !== "") sel.classList.add('is-wrong');
+            }
+            sel.disabled = true;
+            details.push(`${letter}:${val || "0"}`);
+        });
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = "Data Synced";
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        
+        try {
+            await fetch(url, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: JSON.stringify({
+                    gameTitle: "OGE R1 C4EC56 Sochi",
+                    name: name,
+                    score: `${score}/6`,
+                    details: details.join('; ')
+                })
+            });
+            const rb = document.getElementById('resultBox');
+            rb.style.display = 'block';
+            rb.innerHTML = `Great job! Your score: ${score} / 6.`;
+        } catch(e) { console.error(e); }
+    }
+</script>
+
+</body>
+</html>
