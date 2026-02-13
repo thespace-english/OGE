@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Task: Honesty Lesson</title>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --accent: #0071e3;
+            --text: #1d1d1f;
+            --white: #ffffff;
+            --correct: #34c759;
+            --wrong: #ff3b30;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* ЛЕВАЯ ПАНЕЛЬ: ТЕКСТ */
+        .text-panel {
+            flex: 1;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .text-panel h2 { margin-top: 0; color: var(--accent); }
+        .text-panel p { line-height: 1.7; font-size: 16px; margin-bottom: 15px; text-align: justify; }
+
+        /* ПРАВАЯ ПАНЕЛЬ: ВОПРОСЫ */
+        .quiz-panel {
+            flex: 1;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .quiz-header { padding: 20px 30px; border-bottom: 1px solid #eee; }
+
+        .quiz-scroll-area {
+            padding: 30px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .user-input {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .user-input label { display: block; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #86868b; }
+        #userName { width: 100%; padding: 12px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; }
+
+        .q-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .q-text { font-weight: 600; font-size: 16px; margin-bottom: 15px; display: block; }
+
+        .options-group { display: flex; flex-direction: column; gap: 8px; }
+
+        .opt {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .opt input { display: none; }
+        .opt:hover { background: #f5f5f7; }
+        
+        /* Состояния выбора */
+        .opt.selected { border-color: var(--accent); background: rgba(0,113,227,0.05); }
+        
+        /* Классы для подсветки результатов */
+        .opt.is-correct { background-color: var(--correct) !important; color: white; border-color: var(--correct); }
+        .opt.is-wrong { background-color: var(--wrong) !important; color: white; border-color: var(--wrong); }
+
+        #submitBtn {
+            width: 100%; padding: 18px; background: var(--accent); color: white;
+            border: none; border-radius: 12px; font-size: 17px; font-weight: 600;
+            cursor: pointer; margin-top: 10px;
+        }
+
+        #submitBtn:disabled { background: #d2d2d7; cursor: default; }
+
+        #resultBox { display: none; padding: 20px; text-align: center; background: #e8f2ff; border-radius: 12px; font-weight: 700; margin-top: 15px; }
+
+        @media (max-width: 900px) {
+            .main-wrapper { flex-direction: column; overflow-y: auto; height: auto; }
+            .text-panel, .quiz-panel { height: 500px; flex: none; }
+            body { overflow: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="text-panel">
+        <h2>Honesty lesson</h2>
+        <p>Josh Ferrin worked as an artist for the Deseret News in Salt Lake City, Utah. The newspaper has the longest history in the state and the biggest Sunday circulation. Josh had a lot of work and hoped that in several years he could save up for a house of his own.</p>
+        <p>Josh adored his wife and two children. They spent holidays together travelling in their old car that broke down regularly. At weekends in winter, they watched their favourite movies in a rented flat that seemed smaller and smaller as the children were growing.</p>
+        <p>Once Josh and his wife were watching a TV program about children who lived in an orphanage and needed parents. They were so deeply moved by the children’s sad life stories that they decided to adopt a child. The only thing that could stop them was the small flat. That was the moment Josh started looking for a new house.</p>
+        <p>Finding a proper house was not an easy thing to do. They wanted it to be not very expensive, big enough and have some history. Finally, Josh brought his wife to look at an outdated two-storey house with a large attic. Though the house needed repair, there was something about it that made Josh and his wife like it. The real estate agent told them the story of the previous owner. He had six children but lived a lonely life in that house and died several years ago. His children decided to sell the old house and share the money.</p>
+        <p>When they moved in, they went on exploring the house. The massive staircases, cosy bedrooms, a large kitchen and an airy living-room were all they could dream of. The only door that was closed led to the attic below the roof. The next day when his wife and children were away, Josh managed to unlock the door and decided to inspect the attic.</p>
+        <p>The dark space was empty, with spiders’ webs hanging in the corners. Josh turned on the light and noticed a pile of boxes and tins in one of the corners. A small, broken bike lay nearby. Josh thought the room would be ideal for his art studio and started cleaning it up. He threw away several empty boxes when he suddenly found out that all the rest were stuffed with old books.</p>
+        <p>Josh drew out several books from one of the boxes and found a thick pile of banknotes at the bottom. When the family returned, Josh called his wife and told her about the treasure he had found. He also showed her a short notice he had found in the same box. The message, ‘to my children’, was written on a piece of yellowish paper.</p>
+        <p>The sum was enough to buy a new car and repair the house for their own growing family and the child the Ferrins wanted to adopt. The temptation to keep the money was great, but Josh and his wife understood it was not their money.</p>
+        <p>The next week Josh found the previous owner’s family and handed them the money and the note.</p>
+    </div>
+
+    <div class="quiz-panel">
+        <div class="quiz-header">
+            <h3>Questions (1-7)</h3>
+        </div>
+        
+        <div class="quiz-scroll-area">
+            <div class="user-input">
+                <label>Имя ученика</label>
+                <input type="text" id="userName" placeholder="Введите имя...">
+            </div>
+
+            <div id="questions-list">
+                <div class="q-card" data-correct="3">
+                    <span class="q-text">1. Josh Ferrin started his career at the newspaper after his marriage.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q1" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q1" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q1" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="1">
+                    <span class="q-text">2. The members of Josh’s family often spent free time together.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q2" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q2" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q2" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="3">
+                    <span class="q-text">3. Josh’s children approved of their parents’ idea to adopt a child.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q3" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q3" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q3" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="2">
+                    <span class="q-text">4. The previous owner of the house had moved to live with his children.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q4" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q4" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q4" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="1">
+                    <span class="q-text">5. Josh wanted to arrange a place to work in the attic.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q5" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q5" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q5" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="2">
+                    <span class="q-text">6. In the message, the previous owner asked to give the money to the local hospital.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q6" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q6" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q6" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+
+                <div class="q-card" data-correct="1">
+                    <span class="q-text">7. Josh Ferrin fulfilled the will of the previous owner of the house.</span>
+                    <div class="options-group">
+                        <label class="opt"><input type="radio" name="q7" value="1" onchange="sel(this)"> 1 — True</label>
+                        <label class="opt"><input type="radio" name="q7" value="2" onchange="sel(this)"> 2 — False</label>
+                        <label class="opt"><input type="radio" name="q7" value="3" onchange="sel(this)"> 3 — Not stated</label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="submitBtn" onclick="send()">Отправить результат</button>
+            <div id="resultBox"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sel(radio) {
+        const group = radio.closest('.options-group');
+        group.querySelectorAll('.opt').forEach(l => l.classList.remove('selected'));
+        radio.parentElement.classList.add('selected');
+    }
+
+    async function send() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Пожалуйста, введите имя"); return; }
+
+        let score = 0;
+        let details = [];
+        const cards = document.querySelectorAll('.q-card');
+
+        cards.forEach((card, index) => {
+            const correctVal = card.getAttribute('data-correct');
+            const pickedInput = card.querySelector(`input:checked`);
+            const pickedVal = pickedInput ? pickedInput.value : "0";
+            const options = card.querySelectorAll('.opt');
+            
+            options.forEach(opt => {
+                const radio = opt.querySelector('input');
+                // Подсвечиваем правильный вариант зеленым
+                if (radio.value === correctVal) {
+                    opt.classList.add('is-correct');
+                }
+                // Если выбран неверный вариант — подсвечиваем его красным
+                if (pickedInput && radio === pickedInput && pickedVal !== correctVal) {
+                    opt.classList.add('is-wrong');
+                }
+                // Отключаем клики после проверки
+                radio.disabled = true;
+                opt.style.cursor = 'default';
+            });
+
+            if(pickedVal === correctVal) score++;
+            details.push(`${index+1}:${pickedVal}`);
+        });
+
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = "Результаты сохранены";
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        
+        try {
+            await fetch(url, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: JSON.stringify({
+                    gameTitle: "OGE R2 D5BD84 Honesty lesson",
+                    name: name,
+                    score: `${score}/7`,
+                    details: details.join('; ')
+                })
+            });
+            const resBox = document.getElementById('resultBox');
+            resBox.style.display = 'block';
+            resBox.textContent = `Ваш результат: ${score} из 7. Правильные ответы подсвечены зеленым.`;
+        } catch(e) { 
+            alert("Ошибка связи с таблицей, но результаты проверены локально."); 
+        }
+    }
+</script>
+
+</body>
+</html>
