@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Street Art</title>
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --panel: #262626;
+            --accent: #ffff00; /* Ярко-желтый маркер */
+            --text: #e0e0e0;
+            --correct: #00ff00;
+            --wrong: #ff4444;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--panel);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+        }
+
+        h1 { color: var(--accent); text-align: center; text-transform: uppercase; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        
+        .instruction { font-style: italic; color: #aaa; margin-bottom: 20px; font-size: 0.9em; }
+
+        .gap-container { margin-bottom: 25px; line-height: 1.6; font-size: 18px; }
+
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 18px;
+            font-family: inherit;
+            width: 160px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-word {
+            display: inline-block;
+            background: #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #888;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .status { margin-left: 10px; font-weight: bold; }
+        .is-correct { color: var(--correct); border-bottom-color: var(--correct); }
+        .is-wrong { color: var(--wrong); border-bottom-color: var(--wrong); }
+
+        .controls { margin-top: 40px; display: flex; flex-direction: column; gap: 15px; }
+        #submitBtn {
+            background: var(--accent);
+            color: black;
+            border: none;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        #submitBtn:disabled { background: #555; cursor: default; }
+
+        #userName {
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #resultText { text-align: center; font-size: 20px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>STREET ART: WORD FORMATION</h1>
+    <div class="instruction">Transform the words in brackets to complete the sentences.</div>
+
+    <input type="text" id="userName" placeholder="ENTER YOUR NAME">
+
+    <div class="gap-container">
+        29. Not everyone likes street art. 
+        <input type="text" id="ans0" placeholder="..."> 
+        <span class="base-word">USUAL</span>
+        nobody asks owners’ permission before drawing graffiti on their houses.
+    </div>
+
+    <div class="gap-container">
+        30. Sometimes the drawings may be 
+        <input type="text" id="ans1" placeholder="..."> 
+        <span class="base-word">INTEREST</span>
+        and nice but sometimes messy and ugly.
+    </div>
+
+    <div class="gap-container">
+        31. What is graffiti – a form of art or vandalism? It depends on the drawing, I think. A friend of mine, John, is a street 
+        <input type="text" id="ans2" placeholder="..."> 
+        <span class="base-word">ART</span>.
+    </div>
+
+    <div class="gap-container">
+        32. He says that street art is a form of 
+        <input type="text" id="ans3" placeholder="..."> 
+        <span class="base-word">COMMUNICATE</span>.
+    </div>
+
+    <div class="gap-container">
+        33. A person can tell you nice or rude things, can’t he? As for John, he is a really nice and 
+        <input type="text" id="ans4" placeholder="..."> 
+        <span class="base-word">CREATE</span>
+        person.
+    </div>
+
+    <div class="gap-container">
+        34. He enjoys drawing 
+        <input type="text" id="ans5" placeholder="..."> 
+        <span class="base-word">VARY</span>
+        characters from animated films.
+    </div>
+
+    <div class="controls">
+        <button id="submitBtn" onclick="checkAnswers()">Check & Log Progress</button>
+        <div id="resultText"></div>
+    </div>
+</div>
+
+<script>
+    const keys = ["USUALLY", "INTERESTING", "ARTIST", "COMMUNICATION", "CREATIVE", "VARIOUS"];
+
+    async function checkAnswers() {
+        const name = document.getElementById('userName').value.trim();
+        if(!name) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        keys.forEach((key, i) => {
+            const input = document.getElementById('ans' + i);
+            const userVal = input.value.trim().toUpperCase();
+            
+            input.classList.remove('is-correct', 'is-wrong');
+            
+            if(userVal === key) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(userVal || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('resultText').innerHTML = `SCORE: ${score} / 6`;
+
+        // Синхронизация с Google Sheets
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 E5FB65 Street Art",
+                    name: name,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) { console.error(e); }
+    }
+</script>
+
+</body>
+</html>
