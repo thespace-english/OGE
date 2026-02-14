@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE R2 Fish and Chips</title>
+    <style>
+        :root {
+            --paper: #f4f1ea;
+            --ink: #2c2c2c;
+            --accent: #1a472a; /* Британский зеленый */
+            --true: #2e7d32;
+            --false: #c62828;
+            --ns: #1565c0;
+        }
+
+        body {
+            background-color: #d7d1c5;
+            color: var(--ink);
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .newspaper-container {
+            max-width: 1000px;
+            background: var(--paper);
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            border: 1px solid #d1ccbb;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        header {
+            grid-column: span 2;
+            text-align: center;
+            border-bottom: 4px double var(--ink);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        header h1 { font-size: 48px; margin: 0; text-transform: uppercase; letter-spacing: -1px; }
+        .meta { font-style: italic; border-bottom: 1px solid var(--ink); padding: 5px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+
+        /* ТЕКСТ СЛЕВА */
+        .article {
+            text-align: justify;
+            line-height: 1.5;
+            column-count: 1;
+            font-size: 17px;
+        }
+
+        .article h2 { margin-top: 0; text-align: center; text-decoration: underline; }
+
+        /* ЗАДАНИЯ СПРАВА */
+        .tasks-panel {
+            background: rgba(0,0,0,0.03);
+            padding: 20px;
+            border-left: 1px solid #ccc;
+        }
+
+        .user-box { margin-bottom: 25px; }
+        .user-box label { display: block; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; font-size: 12px; }
+        #userName { width: 100%; padding: 10px; border: 1px solid #999; background: transparent; font-family: serif; font-size: 16px; box-sizing: border-box; }
+
+        .question-card {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #bbb;
+        }
+
+        .question-text { font-weight: bold; margin-bottom: 10px; display: block; }
+
+        .options { display: flex; gap: 10px; }
+        .opt {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #999;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+            background: white;
+        }
+        .opt:hover { background: #eee; }
+        
+        /* Стили состояний */
+        .selected { background: #333 !important; color: white; border-color: #333; }
+        .correct { background: var(--true) !important; color: white !important; border-color: var(--true); }
+        .wrong { background: var(--false) !important; color: white !important; border-color: var(--false); }
+        .correct-hint { border: 2px solid var(--true) !important; position: relative; }
+
+        #submitBtn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        #submitBtn:disabled { background: #999; }
+
+        #finalResult {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .newspaper-container { grid-template-columns: 1fr; }
+            header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="newspaper-container">
+    <header>
+        <h1>The British Gazette</h1>
+        <div class="meta">
+            <span>Vol. XCII... No. 57A884</span>
+            <span>SATURDAY, FEBRUARY 14, 2026</span>
+            <span>Price: ONE PENNY</span>
+        </div>
+    </header>
+
+    <div class="article">
+        <h2>Fish and chips</h2>
+        <p>Long before the Big Mac was invented, Britain had its own national form of fast food – fish and chips. Fish’n’chips was a relatively balanced and healthy meal that people could eat in the street on the way home from work, or during their lunch-break. Wrapped in newspaper, it would keep warm even on the coldest days of the year. Besides, serving fish’n’chips in newspaper helped to keep prices low.</p>
+        <p>No British town is more than 150 km from a sea port. So when railways were built in the 19th century, fresh sea fish could easily be bought in all British towns. Cheaper than meat, sea fish became a popular source of protein. By 1870, fish and chip shops were opening all over the country.</p>
+        <p>In the last quarter of the 20th century, things changed. “Fish and chips are not so popular with young people these days,” says Lizzie, a teenager. “Most of the time, if young people want to eat out, they’ll go to a Burger King. Fish ’n’ chips is a bit old-fashioned.”</p>
+        <p>Thousands of chip shops have closed in the last twenty-five years. European hygiene rules don’t allow food to be wrapped in old newspapers, so today’s chip shops use cardboard boxes. Of course, you can still eat fish and chips with your fingers, but there are now plastic throw-away forks!</p>
+        <p>In spite of these changes, the shops could disappear for another reason – lack of fish. Industrial fishing has caused some types of fish to disappear. Soon sea fish will become rarer and, as a result, more expensive. Fish and chips, however, will survive as a high-priced specialty in some expensive restaurants.</p>
+    </div>
+
+    <div class="tasks-panel">
+        <div class="user-box">
+            <label>Reader's Name:</label>
+            <input type="text" id="userName" placeholder="Type name here...">
+        </div>
+
+        <div id="quiz">
+            </div>
+
+        <button id="submitBtn" onclick="checkQuiz()">Check Answers</button>
+        <div id="finalResult"></div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { id: 13, text: "Fish’n’chips became popular much earlier than Big Macs.", ans: 1 },
+        { id: 14, text: "Traditionally, only species of fish with white meat were used to make fish’n’chips.", ans: 3 },
+        { id: 15, text: "In the 19th century, in Britain, fish was more expensive than meat.", ans: 2 },
+        { id: 16, text: "According to Lizzie, today’s young people prefer burgers to fish’n’chips.", ans: 1 },
+        { id: 17, text: "The number of fish’n’chip shops in Britain is rising steadily.", ans: 2 },
+        { id: 18, text: "New packaging has made fish’n’chips more popular.", ans: 3 },
+        { id: 19, text: "In the near future there will be fewer places where people can try fish’n’chips.", ans: 1 }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    
+    questions.forEach((q, index) => {
+        const html = `
+            <div class="question-card" id="q-box-${index}">
+                <span class="question-text">${index + 1}. ${q.text}</span>
+                <div class="options">
+                    <div class="opt" onclick="select(this, ${index}, 1)">1. True</div>
+                    <div class="opt" onclick="select(this, ${index}, 2)">2. False</div>
+                    <div class="opt" onclick="select(this, ${index}, 3)">3. NS</div>
+                </div>
+            </div>
+        `;
+        quizContainer.innerHTML += html;
+    });
+
+    let userAnswers = new Array(questions.length).fill(null);
+
+    function select(el, qIdx, val) {
+        const parent = el.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        el.classList.add('selected');
+        userAnswers[qIdx] = val;
+    }
+
+    async function checkQuiz() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Please enter your name!"); return; }
+        if (userAnswers.includes(null)) { alert("Answer all questions!"); return; }
+
+        let score = 0;
+        userAnswers.forEach((val, i) => {
+            const card = document.getElementById(`q-box-${i}`);
+            const opts = card.getElementsByClassName('opt');
+            const correctVal = questions[i].ans;
+
+            // Снимаем выбор
+            Array.from(opts).forEach(o => o.classList.remove('selected'));
+
+            if (val === correctVal) {
+                opts[val-1].classList.add('correct');
+                score++;
+            } else {
+                opts[val-1].classList.add('wrong');
+                opts[correctVal-1].classList.add('correct-hint');
+            }
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        const resBox = document.getElementById('finalResult');
+        resBox.style.display = 'block';
+        resBox.innerHTML = `Your Score: ${score} / ${questions.length}`;
+
+        // Отправка в Google Таблицу (вашу общую)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE R2 Fish and Chips (57A884)",
+                    name: name,
+                    score: `${score}/${questions.length}`,
+                    details: userAnswers.join(', ')
+                })
+            });
+        } catch (e) { console.error("Sync error", e); }
+    }
+</script>
+
+</body>
+</html>
