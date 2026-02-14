@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Holiday in Thailand (Full Text)</title>
+    <style>
+        :root {
+            --bg: #fdfcf0;
+            --paper: #ffffff;
+            --accent: #00897b;
+            --text: #37474f;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --highlight: #fff9c4;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 850px;
+            background: var(--paper);
+            padding: 50px;
+            border-radius: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Georgia', serif;
+            color: var(--accent);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #e1f5fe;
+            padding: 15px;
+            border-left: 5px solid #0288d1;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .full-text {
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        .input-group {
+            display: inline-block;
+            position: relative;
+            margin: 0 5px;
+        }
+
+        input {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--highlight);
+            padding: 2px 5px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            width: 160px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-word {
+            display: block;
+            font-size: 11px;
+            color: #78909c;
+            text-align: center;
+            font-weight: bold;
+            margin-top: -5px;
+        }
+
+        .user-info {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        #userName {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+            width: auto;
+            text-align: left;
+            text-transform: none;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #submitBtn {
+            display: block;
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #submitBtn:disabled { background: #cfd8dc; cursor: not-allowed; }
+
+        #finalScore {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent);
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            input { width: 130px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Holiday in Thailand</h1>
+
+    <div class="instruction">
+        <strong>Task:</strong> Read the text below. Change the form of the words in CAPITALS so that they grammatically and lexically fit the context.
+    </div>
+
+    <div class="user-info">
+        <label>Student Name:</label>
+        <input type="text" id="userName" placeholder="Enter your name...">
+    </div>
+
+    <div class="full-text">
+        Last year my friend Mia and I went on holiday to Thailand. We stayed in a 
+        <div class="input-group">
+            <input type="text" id="ans0">
+            <span class="base-word">FAME (29)</span>
+        </div> 
+        resort which is popular with tourists. We were very 
+        <div class="input-group">
+            <input type="text" id="ans1">
+            <span class="base-word">LUCK (30)</span>
+        </div> 
+        with the weather and we spent most of our days on the beach. The ocean was 
+        <div class="input-group">
+            <input type="text" id="ans2">
+            <span class="base-word">WONDER (31)</span>
+        </div> 
+        – the water was clear and warm. 
+        <br><br>
+        Thailand is a former French colony and that’s why French is very popular there. Mia was delighted with this fact because she learns French, she wants to be a 
+        <div class="input-group">
+            <input type="text" id="ans3">
+            <span class="base-word">TEACH (32)</span>
+        </div> 
+        of French, and she was able to practise the language there. She is also interested in architecture and she found some fine examples of the French colonial style in Thailand. 
+        <br><br>
+        It was an 
+        <div class="input-group">
+            <input type="text" id="ans4">
+            <span class="base-word">FORGETTABLE (33)</span>
+        </div> 
+        trip for me too. I am a photographer and I took lots of pictures of people and nature. Several magazines found my photos 
+        <div class="input-group">
+            <input type="text" id="ans5">
+            <span class="base-word">INTEREST (34)</span>
+        </div> 
+        enough to publish. I feel very proud of that.
+    </div>
+
+    <button id="submitBtn" onclick="checkFullTask()">Check My Answers</button>
+    <div id="finalScore"></div>
+</div>
+
+<script>
+    const keys = ["FAMOUS", "LUCKY", "WONDERFUL", "TEACHER", "UNFORGETTABLE", "INTERESTING"];
+
+    async function checkFullTask() {
+        const nameInput = document.getElementById('userName');
+        const name = nameInput.value.trim();
+        if(!name) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        keys.forEach((correct, i) => {
+            const input = document.getElementById('ans' + i);
+            const userVal = input.value.trim().toUpperCase();
+            
+            input.classList.remove('is-correct', 'is-wrong');
+            
+            if(userVal === correct) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(userVal || "---");
+        });
+
+        nameInput.disabled = true;
+        document.getElementById('submitBtn').disabled = true;
+        
+        const scoreDisplay = document.getElementById('finalScore');
+        scoreDisplay.style.display = 'block';
+        scoreDisplay.innerHTML = `Your Score: ${score} / 6`;
+
+        // Sync to Sheet
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 EC9D68 Thailand (Full Text)",
+                    name: name,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) { console.error("Sync Error", e); }
+    }
+</script>
+
+</body>
+</html>
