@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Statue of Liberty</title>
+    <style>
+        :root {
+            --bg: #f0f4f8;
+            --card: #ffffff;
+            --accent: #4a90e2; /* Синий как на флаге США */
+            --liberty-green: #6da9a1; /* Цвет патины Статуи Свободы */
+            --text: #333;
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--card);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--liberty-green);
+        }
+
+        h1 { color: var(--accent); text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .story-text { line-height: 1.8; font-size: 18px; }
+
+        .gap-container { margin-bottom: 25px; padding: 10px; border-radius: 8px; transition: 0.3s; }
+        .gap-container:hover { background: #f9f9f9; }
+
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--liberty-green);
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: inherit;
+            width: 180px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-word {
+            display: inline-block;
+            background: #edf2f7;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #718096;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        .is-correct { color: var(--correct); border-bottom-color: var(--correct); }
+        .is-wrong { color: var(--wrong); border-bottom-color: var(--wrong); }
+
+        .footer-controls { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        
+        #userName {
+            width: 100%; padding: 12px; margin-bottom: 20px;
+            border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%; padding: 15px; background: var(--liberty-green);
+            color: white; border: none; border-radius: 8px;
+            font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        #submitBtn:hover { filter: brightness(0.9); }
+        #submitBtn:disabled { background: #cbd5e0; cursor: default; }
+
+        #resultDisplay { text-align: center; font-size: 22px; font-weight: bold; margin-top: 20px; color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>The Statue of Liberty</h1>
+    
+    <input type="text" id="userName" placeholder="ENTER STUDENT NAME">
+
+    <div class="story-text">
+        <div class="gap-container">
+            29. It all started in 1865. A group of Frenchmen were having dinner in one of the most 
+            <input type="text" id="ans0" placeholder="..."> 
+            <span class="base-word">FASHION</span> restaurants near Paris.
+        </div>
+
+        <div class="gap-container">
+            30. They talked about the democratic changes in the USA. After a short 
+            <input type="text" id="ans1" placeholder="..."> 
+            <span class="base-word">DISCUSS</span> they agreed on an original idea.
+        </div>
+
+        <div class="gap-container">
+            31. The idea was suggested by Bartholdi, a sculptor and 
+            <input type="text" id="ans2" placeholder="..."> 
+            <span class="base-word">DESIGN</span>.
+        </div>
+
+        <div class="gap-container">
+            32. It was an ambitious project and it was 
+            <input type="text" id="ans3" placeholder="..."> 
+            <span class="base-word">POSSIBLE</span> to complete it quickly.
+        </div>
+
+        <div class="gap-container">
+            33. The French people raised money to build the statue, and, 
+            <input type="text" id="ans4" placeholder="..."> 
+            <span class="base-word">FINAL</span>, in 1886 it was ready.
+        </div>
+
+        <div class="gap-container">
+            34. On July 4, 1886 the United States received their 
+            <input type="text" id="ans5" placeholder="..."> 
+            <span class="base-word">AMAZE</span> gift!
+        </div>
+    </div>
+
+    <div class="footer-controls">
+        <button id="submitBtn" onclick="checkLiberty()">Check Answers & Save</button>
+        <div id="resultDisplay"></div>
+    </div>
+</div>
+
+<script>
+    const correctAnswers = ["FASHIONABLE", "DISCUSSION", "DESIGNER", "IMPOSSIBLE", "FINALLY", "AMAZING"];
+
+    async function checkLiberty() {
+        const name = document.getElementById('userName').value.trim();
+        if(!name) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        correctAnswers.forEach((correct, i) => {
+            const input = document.getElementById('ans' + i);
+            const userVal = input.value.trim().toUpperCase();
+            
+            input.classList.remove('is-correct', 'is-wrong');
+            
+            if(userVal === correct) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(userVal || "---");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('resultDisplay').innerHTML = `Result: ${score} / 6`;
+
+        // Логирование
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 1A1CBD Statue of Liberty",
+                    name: name,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) { console.error("Sync failed", e); }
+    }
+</script>
+
+</body>
+</html>
