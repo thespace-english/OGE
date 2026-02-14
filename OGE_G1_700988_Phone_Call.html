@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: A Phone Call</title>
+    <style>
+        :root {
+            --bg: #f0f4f7;
+            --paper: #ffffff;
+            --accent: #2980b9;
+            --text: #2c3e50;
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --input-bg: #f9fbfd;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #e1f5fe;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            border: 1px solid #b3e5fc;
+        }
+
+        .full-text {
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        .input-group {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 5px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 170px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-word {
+            display: block;
+            font-size: 10px;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        .student-box { margin-bottom: 25px; }
+        #userName { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        #submitBtn:hover { background: #2471a3; }
+        #submitBtn:disabled { background: #bdc3c7; }
+        #scoreDisplay { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>A Phone Call</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the form of the words in capitals (20–28) to fit the text grammatically.
+    </div>
+
+    <div class="student-box">
+        <input type="text" id="userName" placeholder="Type Your Name Here...">
+    </div>
+
+    <div class="full-text">
+        The phone woke Kim up. She answered the call almost immediately, after the 
+        <div class="input-group">
+            <input type="text" id="ans0">
+            <span class="base-word">THREE (20)</span>
+        </div> 
+        beep. The voice on the other end of the line sounded familiar but Kim 
+        <div class="input-group">
+            <input type="text" id="ans1">
+            <span class="base-word">NOT CAN (21)</span>
+        </div> 
+        remember who it belonged to.
+        <br><br>
+        “Hello,” the lady said. “Can I speak to Mrs. Len?”
+        <br>
+        “I’m sorry but she’s not at home. She’s out. She 
+        <div class="input-group">
+            <input type="text" id="ans2">
+            <span class="base-word">WALK (22)</span>
+        </div> 
+        in the park.”
+        <br><br>
+        It was very cold out-of-doors and everything 
+        <div class="input-group">
+            <input type="text" id="ans3">
+            <span class="base-word">COVER (23)</span>
+        </div> 
+        in snow but Kim’s mother walked in all weathers. She believed that it 
+        <div class="input-group">
+            <input type="text" id="ans4">
+            <span class="base-word">HELP (24)</span>
+        </div> 
+        her keep fit. She actually looked younger than other 
+        <div class="input-group">
+            <input type="text" id="ans5">
+            <span class="base-word">WOMAN (25)</span>
+        </div> 
+        of her age.
+        <br><br>
+        “Can I take a message?” Kim asked politely.
+        <br>
+        “No. I 
+        <div class="input-group">
+            <input type="text" id="ans6">
+            <span class="base-word">CALL (26)</span>
+        </div> 
+        her later.”
+        <br>
+        “She normally 
+        <div class="input-group">
+            <input type="text" id="ans7">
+            <span class="base-word">COME (27)</span>
+        </div> 
+        home at five.”
+        <br><br>
+        Kim felt a bit hurt. “If I 
+        <div class="input-group">
+            <input type="text" id="ans8">
+            <span class="base-word">BE (28)</span>
+        </div> 
+        older, I would explain to that lady how to talk to people politely.”
+    </div>
+
+    <button id="submitBtn" onclick="checkAnswers()">Check Results</button>
+    <div id="scoreDisplay"></div>
+</div>
+
+<script>
+    const keys = ["THIRD", "COULD NOT", "IS WALKING", "WAS COVERED", "HELPED", "WOMEN", "WILL CALL", "COMES", "WERE"];
+
+    async function checkAnswers() {
+        const name = document.getElementById('userName').value.trim();
+        if(!name) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        keys.forEach((key, i) => {
+            const input = document.getElementById('ans' + i);
+            const userVal = input.value.trim().toUpperCase();
+            
+            // Специальная проверка для сокращений (could not / couldn't, will call / 'll call)
+            let isCorrect = (userVal === key);
+            if (i === 1 && userVal === "COULDN'T") isCorrect = true;
+            if (i === 1 && userVal === "COULD NOT") isCorrect = true;
+            if (i === 6 && userVal === "SHALL CALL") isCorrect = true;
+
+            if(isCorrect) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(userVal || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('scoreDisplay').innerHTML = `Final Score: ${score} / 9`;
+
+        const url = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 700988 Phone Call",
+                    name: name,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
