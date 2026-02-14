@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Learning Languages</title>
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --paper: #ffffff;
+            --accent: #2980b9;
+            --text: #2c3e50;
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --input-focus: #ebf5fb;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 24px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #fdfae6;
+            padding: 15px;
+            border-left: 4px solid #f1c40f;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .user-block {
+            margin-bottom: 30px;
+        }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+            color: #34495e;
+        }
+
+        .input-wrapper {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 4px;
+            text-align: center;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: #f9f9f9;
+            padding: 2px 5px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 160px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        input[type="text"].gap:focus {
+            background: var(--input-focus);
+        }
+
+        .base-word-hint {
+            display: block;
+            font-size: 10px;
+            color: #95a5a6;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #submitBtn {
+            display: block;
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #submitBtn:hover { background: #2471a3; }
+        #submitBtn:disabled { background: #bdc3c7; cursor: not-allowed; }
+
+        #finalScore {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Learning Languages</h1>
+
+    <div class="instruction">
+        <strong>Grammar & Vocabulary:</strong> Read the full text and transform the words in CAPITALS to fit the gaps.
+    </div>
+
+    <div class="user-block">
+        <input type="text" id="userName" placeholder="Student Name...">
+    </div>
+
+    <div class="full-text">
+        It’s obvious that language skills are essential for everyone today. Foreign languages are very 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-word-hint">USE (29)</span>
+        </div> 
+        not only for travelling, but also for studying and building a career. There are lots of 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-word-hint">EFFECT (30)</span>
+        </div> 
+        ways to learn a new language. 
+        <br><br>
+        However, everyone agrees that learning languages is 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-word-hint">POSSIBLE (31)</span>
+        </div> 
+        without dictionaries. The main job of any dictionary is to explain what words mean. This can be done via 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-word-hint">TRANSLATE (32)</span>
+        </div> 
+        or the unknown word can be explained in other words. 
+        <br><br>
+        It’s also good if the dictionary contains some examples of how the word is used – it helps to understand the 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-word-hint">MEAN (33)</span>
+        </div> 
+        much better. If you are a busy 
+        <div class="input-wrapper">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-word-hint">LEARN (34)</span>
+        </div>, 
+        you probably prefer online dictionaries to paper ones. Online dictionaries are very convenient to use if you have Internet access.
+    </div>
+
+    <button id="submitBtn" onclick="checkLearningTask()">Submit Answers</button>
+    <div id="finalScore"></div>
+</div>
+
+<script>
+    const solution = ["USEFUL", "EFFECTIVE", "IMPOSSIBLE", "TRANSLATION", "MEANING", "LEARNER"];
+
+    async function checkLearningTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        solution.forEach((val, i) => {
+            const input = document.getElementById('ans' + i);
+            const userVal = input.value.trim().toUpperCase();
+            
+            if(userVal === val) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(userVal || "---");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalScore').innerHTML = `Score: ${score} / 6`;
+
+        // Log to Sheets
+        const sheetURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(sheetURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 D38AB6 Learning Languages",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) { console.warn("Log failed", e); }
+    }
+</script>
+
+</body>
+</html>
