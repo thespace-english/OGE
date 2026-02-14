@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Jeff</title>
+    <style>
+        :root {
+            --bg: #fdf6e3;
+            --paper: #ffffff;
+            --accent: #d33682; /* Пурпурный акцент */
+            --text: #586e75;
+            --correct: #859900;
+            --wrong: #dc322f;
+            --input-bg: #eee8d5;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #fdf6e3;
+            padding: 15px;
+            border: 1px dashed var(--accent);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .full-text {
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 160px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-word {
+            display: block;
+            font-size: 10px;
+            color: #93a1a1;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e7f3d4 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #f8d7da !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        .user-block { margin-bottom: 25px; }
+        #userName { width: 100%; padding: 10px; border: 1px solid #ccc; font-size: 16px; }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #submitBtn:disabled { background: #93a1a1; }
+        #finalResult { margin-top: 20px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jeff's Morning</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the form of the words in capitals (20–28) to fit the text grammatically.
+    </div>
+
+    <div class="user-block">
+        <input type="text" id="userName" placeholder="Enter Student Name">
+    </div>
+
+    <div class="full-text">
+        Jeff woke up late. The house was very quiet and Jeff 
+        <div class="gap-box">
+            <input type="text" id="ans0">
+            <span class="base-word">UNDERSTAND (20)</span>
+        </div> 
+        that he was alone there. He got up and headed to the kitchen. There 
+        <div class="gap-box">
+            <input type="text" id="ans1">
+            <span class="base-word">BE (21)</span>
+        </div> 
+        nobody in it but he felt the delicious aroma of fresh baking. 
+        <br><br>
+        A large bowl of doughnuts was on the table. It 
+        <div class="gap-box">
+            <input type="text" id="ans2">
+            <span class="base-word">COVER (22)</span>
+        </div> 
+        with a white kitchen towel but Jeff could not resist it and pulled out a doughnut. When he was consuming his 
+        <div class="gap-box">
+            <input type="text" id="ans3">
+            <span class="base-word">FIVE (23)</span>
+        </div> 
+        one, his grandmother appeared at the doorway. She 
+        <div class="gap-box">
+            <input type="text" id="ans4">
+            <span class="base-word">WEAR (24)</span>
+        </div> 
+        light working trousers, a T-shirt, and an old straw hat. 
+        <br><br>
+        Jeff guessed that she had been working on 
+        <div class="gap-box">
+            <input type="text" id="ans5">
+            <span class="base-word">SHE (25)</span>
+        </div> 
+        roses, in the front garden. “Fine, you 
+        <div class="gap-box">
+            <input type="text" id="ans6">
+            <span class="base-word">WAKE (26)</span>
+        </div> 
+        up at last!” said Granny. “Go and wash!” 
+        <br><br>
+        Jeff remembered that Granny had always been very strict. She never allowed her grandchildren to look untidy or avoid brushing their 
+        <div class="gap-box">
+            <input type="text" id="ans7">
+            <span class="base-word">TOOTH (27)</span>
+        </div>. 
+        “Ok-ok, just a second,” laughed Jeff. “I 
+        <div class="gap-box">
+            <input type="text" id="ans8">
+            <span class="base-word">COME (28)</span>
+        </div> 
+        as soon as I am ready.”
+    </div>
+
+    <button id="submitBtn" onclick="checkGrammar()">Submit & Log</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    const keys = ["UNDERSTOOD", "WAS", "WAS COVERED", "FIFTH", "WAS WEARING", "HER", "HAVE WOKEN", "TEETH", "WILL COME"];
+
+    async function checkGrammar() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Name required!"); return; }
+
+        let score = 0;
+        let logs = [];
+
+        keys.forEach((correct, i) => {
+            const input = document.getElementById('ans' + i);
+            const userInp = input.value.trim().toUpperCase();
+            
+            if(userInp === correct || (correct === "HAVE WOKEN" && userInp === "WOKE")) { 
+                // В №26 (HAVE WOKEN) иногда допускается WOKE, но в ОГЭ лучше Present Perfect
+                if(userInp === correct) {
+                    input.classList.add('is-correct');
+                    score++;
+                } else if (i === 6 && userInp === "WOKE") { // Допустим Past Simple как вариант
+                    input.classList.add('is-correct');
+                    score++;
+                } else {
+                    input.classList.add('is-wrong');
+                }
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            logs.push(userInp || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Score: ${score} / 9`;
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 5F09B2 Jeff",
+                    name: uName,
+                    score: score + "/9",
+                    details: logs.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
