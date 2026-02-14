@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Michael Wilkins</title>
+    <style>
+        :root {
+            --bg: #fdfdfd;
+            --paper: #ffffff;
+            --accent: #2c3e50;
+            --text: #333;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #fffde7;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 4px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .instruction {
+            background: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #1976d2;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+        }
+
+        .user-section {
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #userName {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .input-group {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            width: 170px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-word {
+            display: block;
+            font-size: 10px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #submitBtn {
+            display: block;
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #submitBtn:disabled { background: #bdc3c7; cursor: not-allowed; }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Michael Wilkins</h1>
+
+    <div class="instruction">
+        <strong>Grammar & Vocabulary:</strong> Change the form of the words in capitals to complete the text.
+    </div>
+
+    <div class="user-section">
+        <input type="text" id="userName" placeholder="Type Student Name...">
+    </div>
+
+    <div class="full-text">
+        Recently my neighbour Michael Wilkins got a job in sales. However, soon he found out that being a sales 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-word">MANAGE (29)</span>
+        </div> 
+        did not make him happy. He had to work long hours, and the job was 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-word">STRESS (30)</span>
+        </div> 
+        and demanding. 
+        <br><br>
+        The atmosphere in the office was very 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-word">FRIENDLY (31)</span>
+        </div> 
+        and the workers often quarreled with each other. So Michael decided to look for a more 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-word">ATTRACT (32)</span>
+        </div> 
+        job. 
+        <br><br>
+        In the local newspaper, he saw an 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-word">ADVERTISE (33)</span>
+        </div> 
+        from a pizzeria. It was close to his house and they needed a waiter. Michael decided to apply and didn’t regret it. 
+        <br><br>
+        “It’s good to feed people. I enjoy seeing them smile – it’s important, isn’t it?” Michael says. Next week he’s going to take a cooking course. On completing it, he will be able to make 
+        <div class="input-group">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-word">TASTE (34)</span>
+        </div> 
+        pizzas himself!
+    </div>
+
+    <button id="submitBtn" onclick="processTask()">Check My Results</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    const solution = ["MANAGER", "STRESSFUL", "UNFRIENDLY", "ATTRACTIVE", "ADVERTISEMENT", "TASTY"];
+
+    async function processTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let logs = [];
+
+        solution.forEach((val, i) => {
+            const input = document.getElementById('ans' + i);
+            const userInp = input.value.trim().toUpperCase();
+            
+            if(userInp === val) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            logs.push(userInp || "NULL");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('result').innerHTML = `Final Score: ${score} / 6`;
+
+        // Sync with Sheet
+        const sheetURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(sheetURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 0DF23E Michael Wilkins",
+                    name: uName,
+                    score: score + "/6",
+                    details: logs.join(', ')
+                })
+            });
+        } catch(err) { console.warn("Log failed", err); }
+    }
+</script>
+
+</body>
+</html>
