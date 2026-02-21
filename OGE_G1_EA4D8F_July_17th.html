@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: July 17th</title>
+    <style>
+        :root {
+            --bg: #f3f9ff;
+            --paper: #ffffff;
+            --accent: #1565c0;
+            --text: #263238;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #e3f2fd;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #e1f5fe;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            border: 1px solid #bbdefb;
+        }
+
+        .full-text {
+            font-size: 18px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 190px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #546e7a;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #bbdefb;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #cfd8dc; }
+        #finalScore { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mark's Birthday Telescope</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the form of the words in CAPITALS (18–26) to complete the story.
+    </div>
+
+    <input type="text" id="userName" placeholder="Type Your Name Here...">
+
+    <div class="full-text">
+        July 17th was coming. It would be Mark’s 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">THIRTEEN (18)</span>
+        </div> 
+        birthday. His Mum asked him what he 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">WANT (19)</span>
+        </div> 
+        as a gift. 
+        <br><br>
+        Mum 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">SHAKE (20)</span>
+        </div> 
+        her head doubtfully. She knew a telescope was a 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">EXPENSIVE (21)</span>
+        </div> 
+        present than they had planned. 
+        <br><br>
+        After dinner Mum said: “But we 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">SPEND (22)</span>
+        </div> 
+        all our savings already. I wish we 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">CAN (23)</span>
+        </div> 
+        buy him this present but we really can’t.”
+        <br><br>
+        “I think, Nick 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-hint">AGREE (24)</span>
+        </div> 
+        to sell us his telescope at half price,” Dad smiled. 
+        <br><br>
+        Nick 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-hint">PLANT (25)</span>
+        </div> 
+        roses in the garden when Mum and Dad arrived. He said: “There are lots of 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-hint">BOX (26)</span>
+        </div> 
+        in the attic. You can take whatever you want.”
+    </div>
+
+    <button id="submitBtn" onclick="checkJulyTask()">Check & Save Results</button>
+    <div id="finalScore"></div>
+</div>
+
+<script>
+    async function checkJulyTask() {
+        const nameInput = document.getElementById('userName').value.trim();
+        if(!nameInput) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        const solution = [
+            ["THIRTEENTH"],
+            ["WANTED"],
+            ["SHOOK"],
+            ["MORE EXPENSIVE"],
+            ["HAVE SPENT", "'VE SPENT"],
+            ["COULD"],
+            ["WILL AGREE", "'LL AGREE"],
+            ["WAS PLANTING"],
+            ["BOXES"]
+        ];
+
+        solution.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalScore').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 EA4D8F July 17th",
+                    name: nameInput,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
