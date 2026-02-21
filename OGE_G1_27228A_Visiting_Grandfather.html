@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Visiting Grandfather</title>
+    <style>
+        :root {
+            --bg: #fdfcf0;
+            --paper: #ffffff;
+            --accent: #ff9800;
+            --text: #4e342e;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #fff8e1;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 26px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #fffde7;
+            padding: 15px;
+            border-left: 5px solid var(--accent);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            width: 170px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #a1887f;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #d7ccc8;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #cfd8dc; cursor: not-allowed; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Visiting Grandfather</h1>
+
+    <div class="instruction">
+        <strong>Grammar Focus:</strong> Transform the words in CAPITALS to fit the story (18–26).
+    </div>
+
+    <input type="text" id="userName" placeholder="Type Student Name...">
+
+    <div class="full-text">
+        It was an early morning. Ben jumped out of his bed as soon as the 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">ONE (18)</span>
+        </div> 
+        rays of sun came into the room. He grabbed his backpack and started to pack. Ben put in some of his favourite things to take with 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">HE (19)</span>
+        </div> 
+        on the trip. 
+        <br><br>
+        Soon everything 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">PACK (20)</span>
+        </div> 
+        and he started to get dressed. Visiting Grandpa had always been the 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">GOOD (21)</span>
+        </div> 
+        part of his summer vacation. Ben’s granddad 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">TEACH (22)</span>
+        </div> 
+        him how to repair bikes and other things.
+        <br><br>
+        Ben’s mum entered his room. “Grandpa’s here,” she said. Ben told her that he 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">BE (23)</span>
+        </div> 
+        ready to go. He ran into the kitchen where Grandpa 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-hint">DRINK (24)</span>
+        </div> 
+        his tea. 
+        <br><br>
+        “Ready, big guy? Will you have breakfast?” asked Grandpa.
+        <br>
+        “No, I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-hint">NOT BE (25)</span>
+        </div> 
+        hungry”, Ben answered. “Grandma 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-hint">COOK (26)</span>
+        </div> 
+        something nice for me, hasn’t she?”
+    </div>
+
+    <button id="submitBtn" onclick="checkGrandpaTask()">Submit Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkGrandpaTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        const solutions = [
+            ["FIRST"],
+            ["HIM"],
+            ["WAS PACKED"],
+            ["BEST"],
+            ["TAUGHT"],
+            ["WAS"],
+            ["WAS DRINKING"],
+            ["AM NOT", "A'M NOT", "AMN'T"],
+            ["HAS COOKED", "'S COOKED"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 27228A Visiting Grandfather",
+                    name: uName,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
