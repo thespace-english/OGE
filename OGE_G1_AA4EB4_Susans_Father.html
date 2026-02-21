@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Susan's Father</title>
+    <style>
+        :root {
+            --bg: #fdfaf6;
+            --paper: #ffffff;
+            --accent: #6d4c41;
+            --text: #3e2723;
+            --correct: #388e3c;
+            --wrong: #d32f2f;
+            --input-bg: #efebe9;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Trebuchet MS', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+        }
+
+        .instruction {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #5d4037;
+            border-left: 5px solid #ffb300;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-wrapper {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 175px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-word {
+            display: block;
+            font-size: 10px;
+            color: #8d6e63;
+            font-weight: bold;
+            margin-top: -2px;
+            text-transform: uppercase;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        .student-info { margin-bottom: 30px; }
+        #userName { width: 100%; padding: 12px; border: 1px solid #d7ccc8; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        #submitBtn:hover { opacity: 0.9; }
+        #submitBtn:disabled { background: #bcaaa4; cursor: not-allowed; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 24px; font-weight: bold; color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>A Business Trip to China</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the form of the words in CAPITALS (18–26) to complete the story.
+    </div>
+
+    <div class="student-info">
+        <input type="text" id="userName" placeholder="Enter Student Name...">
+    </div>
+
+    <div class="full-text">
+        Susan’s father often had to go to different countries on business. That evening, he came home 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-word">LATE (18)</span>
+        </div> 
+        than usual. He looked tired. Susan 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-word">KNOW (19)</span>
+        </div> 
+        that the next week her father was going to China to discuss a new project. 
+        <br><br>
+        At dinner, her father asked Susan if she 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-word">WANT (20)</span>
+        </div> 
+        to go with him. It was a bit unexpected but Susan liked the idea at once. It was her 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-word">SIXTEEN (21)</span>
+        </div> 
+        birthday in a few days. And Susan thought it 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-word">BE (22)</span>
+        </div> 
+        fun to celebrate it abroad. 
+        <br><br>
+        However, there was one thing she wanted to clear up before the trip: “Are you going to be busy from morning till night? I 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-word">NOT WANT (23)</span>
+        </div> 
+        to sit in the hotel all the time alone.”
+        <br><br>
+        “You won’t have to,” her father reassured Susan. “I 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-word">PREPARE (24)</span>
+        </div> 
+        all the project papers already. So, we’ll have plenty of time for sightseeing.”
+        <br><br>
+        “Great!” Susan ran up to her room to pack. “Remember to take some comfortable shoes. Otherwise your 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-word">FOOT (25)</span>
+        </div> 
+        will hurt after the long excursions.”
+        <br><br>
+        Half an hour later everything 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-word">PACK (26)</span>
+        </div> 
+        in a suitcase and Susan called her best friend.
+    </div>
+
+    <button id="submitBtn" onclick="checkSusanTask()">Check Answers</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkSusanTask() {
+        const name = document.getElementById('userName').value.trim();
+        if(!name) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+
+        const userInp = (id) => document.getElementById(id).value.trim().toUpperCase();
+
+        const checkMap = [
+            { id: 'ans0', key: ["LATER"] },
+            { id: 'ans1', key: ["KNEW"] },
+            { id: 'ans2', key: ["WANTED"] },
+            { id: 'ans3', key: ["SIXTEENTH"] },
+            { id: 'ans4', key: ["WOULD BE"] },
+            { id: 'ans5', key: ["DO NOT WANT", "DON'T WANT"] },
+            { id: 'ans6', key: ["HAVE PREPARED", "'VE PREPARED"] },
+            { id: 'ans7', key: ["FEET"] },
+            { id: 'ans8', key: ["WAS PACKED"] }
+        ];
+
+        checkMap.forEach((item, i) => {
+            const input = document.getElementById(item.id);
+            const val = input.value.trim().toUpperCase();
+            
+            if(item.key.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 AA4EB4 Susan's Father",
+                    name: name,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
