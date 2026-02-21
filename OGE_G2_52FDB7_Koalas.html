@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Koalas</title>
+    <style>
+        :root {
+            --bg: #f1f8e9;
+            --paper: #ffffff;
+            --accent: #33691e;
+            --text: #1b5e20;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #f9fbe7;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Trebuchet MS', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 26px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #dcedc8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #33691e;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-wrapper {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 185px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #558b2f;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #a8e6cf;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #b0bec5; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>The Fate of Koalas</h1>
+
+    <div class="instruction">
+        <strong>Word Formation:</strong> Change the word in CAPITALS to fit the context (27–32).
+    </div>
+
+    <input type="text" id="userName" placeholder="Enter Student Name...">
+
+    <div class="full-text">
+        Koalas are cute animals. 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">FORTUNATELY (27)</span>
+        </div>, 
+        it causes them lots of problems. There are people who want to keep them as pets, which may put the koala in a really 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">DANGER (28)</span>
+        </div> 
+        situation. 
+        <br><br>
+        The problem is that the koala’s diet is very specific. To stay 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">HEALTH (29)</span>
+        </div> 
+        they should only eat eucalyptus leaves. 
+        <br><br>
+        Andrew Page, a 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">SCIENCE (30)</span>
+        </div> 
+        who has been studying koalas for years, says it’s a bad idea. People who try to do it usually have very little 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">INFORM (31)</span>
+        </div> 
+        about koala’s lifestyle. And their ignorance can often cost the 
+        <div class="gap-wrapper">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">BEAUTY (32)</span>
+        </div> 
+        animal its life.
+    </div>
+
+    <button id="submitBtn" onclick="checkKoalas()">Check Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkKoalas() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solution = ["UNFORTUNATELY", "DANGEROUS", "HEALTHY", "SCIENTIST", "INFORMATION", "BEAUTIFUL"];
+
+        solution.forEach((key, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(val === key) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 6`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 52FDB7 Koalas",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
