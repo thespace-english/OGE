@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Meeting Natalie</title>
+    <style>
+        :root {
+            --bg: #fff5f8;
+            --paper: #ffffff;
+            --accent: #c2185b;
+            --text: #37474f;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #fce4ec;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-right: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 24px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .instruction {
+            background: #fce4ec;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            border: 1px solid #f8bbd0;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 190px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #ad1457;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #f8bbd0;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #cfd8dc; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>A Meeting in Paris</h1>
+
+    <div class="instruction">
+        <strong>Word Formation:</strong> Change the words in CAPITALS to fit the context (27–32).
+    </div>
+
+    <input type="text" id="userName" placeholder="Enter Student Name...">
+
+    <div class="full-text">
+        I unexpectedly met Natalie in Paris. Now she works as a 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">REPORT (27)</span>
+        </div> 
+        for a newspaper. Our 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">FRIEND (28)</span>
+        </div> 
+        began at school. 
+        <br><br>
+        Natalie took me to see The Grand Opera. It is one of the most 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">FAME (29)</span>
+        </div> 
+        opera houses in the world. Now she is a very 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">SUCCESS (30)</span>
+        </div> 
+        journalist. 
+        <br><br>
+        I was 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">LUCK (31)</span>
+        </div> 
+        that she found some time for me. Natalie made my visit to Paris 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">FORGETTABLE (32)</span>
+        </div>. 
+        She took me to the most interesting places.
+    </div>
+
+    <button id="submitBtn" onclick="checkParis()">Check Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkParis() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solution = ["REPORTER", "FRIENDSHIP", "FAMOUS", "SUCCESSFUL", "LUCKY", "UNFORGETTABLE"];
+
+        solution.forEach((key, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(val === key) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 6`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 Natalie in Paris",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
