@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Ray Kurzweil</title>
+    <style>
+        :root {
+            --bg: #eceff1;
+            --paper: #ffffff;
+            --accent: #00838f;
+            --text: #263238;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #e0f7fa;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 24px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .instruction {
+            background: #e0f2f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            border-left: 5px solid var(--accent);
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            width: 170px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #546e7a;
+            font-weight: bold;
+            margin-top: -3px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #b0bec5;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 18px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #cfd8dc; cursor: not-allowed; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>The Predictions of Ray Kurzweil</h1>
+
+    <div class="instruction">
+        <strong>Word Formation Task:</strong> Transform the word in CAPITALS to fit the context (27–32).
+    </div>
+
+    <input type="text" id="userName" placeholder="Type Student Name...">
+
+    <div class="full-text">
+        Ray Kurzweil is a very popular figure in the field of science. He is a leading computer 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">SCIENCE (27)</span>
+        </div> 
+        who has made lots of predictions about the future of humanity. 
+        <br><br>
+        So far he has written six books about artificial intelligence, and four of them have become 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">NATION (28)</span>
+        </div> 
+        best sellers in the USA. Ray strongly believes that soon computer intelligence will be a billion times more 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">POWER (29)</span>
+        </div> 
+        than the human brain. 
+        <br><br>
+        However, lots of experts don’t believe it and say that it is absolutely 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">POSSIBLE (30)</span>
+        </div>. 
+        <br><br>
+        Kurzweil disagrees with them. We already use high level technology to diagnose diseases, provide 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">EDUCATE (31)</span>
+        </div>, 
+        and develop new technologies. Kurzweil thinks that by 2030, computers will do more 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">IMPRESS (32)</span>
+        </div> 
+        tasks.
+    </div>
+
+    <button id="submitBtn" onclick="checkKurzweil()">Verify Answers</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkKurzweil() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solution = ["SCIENTIST", "NATIONAL", "POWERFUL", "IMPOSSIBLE", "EDUCATION", "IMPRESSIVE"];
+
+        solution.forEach((key, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(val === key) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 6`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 E88433 Ray Kurzweil",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
