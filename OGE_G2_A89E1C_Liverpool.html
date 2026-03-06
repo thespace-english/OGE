@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Liverpool</title>
+    <style>
+        /* Использование шрифтов без засечек */
+        :root {
+            --bg: #f0f4f8;
+            --paper: #ffffff;
+            --accent: #c8102e; /* Цвет ФК Ливерпуль */
+            --text: #1a1a1a;
+            --correct: #2d8a39;
+            --wrong: #d32f2f;
+            --input-bg: #fff5f5;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .instruction {
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #b71c1c;
+            border-left: 5px solid var(--accent);
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            width: 170px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #757575;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #bdbdbd; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Liverpool: Music & Football</h1>
+
+    <div class="instruction">
+        <strong>Word Formation:</strong> Change the word in CAPITALS to fit the context (Tasks 29–34).
+    </div>
+
+    <input type="text" id="userName" placeholder="Enter Student Name...">
+
+    <div class="full-text">
+        I arrived in Liverpool in the afternoon. It was a 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">RAIN (29)</span>
+        </div> 
+        day but the weather couldn’t spoil my excellent mood. Many people associate this city with the 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">FAME (30)</span>
+        </div> 
+        musical band, the Beatles. 
+        <br><br>
+        Today it’s also 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">POSSIBLE (31)</span>
+        </div> 
+        to imagine Liverpool without football! The city is home to two teams. Everton was more 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">SUCCESS (32)</span>
+        </div> 
+        in the past. 
+        <br><br>
+        I’ve been Liverpool’s 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">SUPPORT (33)</span>
+        </div> 
+        since I was a small boy. I had watched a lot of games there. It was very 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">EXCITE (34)</span>
+        </div> 
+        and it was one of the most important memories of my childhood.
+    </div>
+
+    <button id="submitBtn" onclick="checkLiverpoolTask()">Submit Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkLiverpoolTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solutions = [
+            ["RAINY"],
+            ["FAMOUS"],
+            ["IMPOSSIBLE"],
+            ["SUCCESSFUL"],
+            ["SUPPORTER"],
+            ["EXCITING"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 6`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 A89E1C Liverpool",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Jason's Key</title>
+    <style>
+        /* Шрифт без засечек согласно требованию */
+        :root {
+            --bg: #fdfdfd;
+            --paper: #ffffff;
+            --accent: #d84315;
+            --text: #263238;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #fff3e0;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #fbe9e7;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #bf360c;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            width: 175px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #78909c;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #cfd8dc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #b0bec5; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jason and the Lost Key</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the word in CAPITALS to complete the story (Tasks 1–9).
+    </div>
+
+    <input type="text" id="userName" placeholder="Type Student Name Here...">
+
+    <div class="full-text">
+        It was about 6pm when I heard a knock on the door. It 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">BE (1)</span>
+        </div> 
+        Jason, my neighbour. He looked cold and upset. 
+        <br><br>
+        “What’s wrong?” — “I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">LOSE (2)</span>
+        </div> 
+        my key and I can't get into my house.” 
+        <br><br>
+        “Come in.” Today's not a day for long walks. I looked out the window. It 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">SNOW (3)</span>
+        </div> 
+        hard and it was windy. The weather was getting 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">BAD (4)</span>
+        </div> 
+        every hour. 
+        <br><br>
+        Jason 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">TAKE (5)</span>
+        </div> 
+        off his coat and boots. His 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">FOOT (6)</span>
+        </div> 
+        were wet. 
+        <br><br>
+        “Where are your parents, Jason?” — “I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-hint">NOT KNOW (7)</span>
+        </div>. 
+        I can't call them because the screen 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-hint">BREAK (8)</span>
+        </div> 
+        and the phone was obviously dead.” Jason took his 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-hint">FOUR (9)</span>
+        </div> 
+        biscuits.
+    </div>
+
+    <button id="submitBtn" onclick="checkJasonTask()">Verify Answers</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkJasonTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solutions = [
+            ["WAS"],
+            ["HAVE LOST", "'VE LOST"],
+            ["WAS SNOWING"],
+            ["WORSE"],
+            ["TOOK"],
+            ["FEET"],
+            ["DO NOT KNOW", "DON'T KNOW"],
+            ["WAS BROKEN"],
+            ["FOURTH"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 FC0614 Jason",
+                    name: uName,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>

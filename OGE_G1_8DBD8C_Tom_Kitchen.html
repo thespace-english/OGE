@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Tom's Breakfast</title>
+    <style>
+        /* Шрифт без засечек согласно требованию */
+        :root {
+            --bg: #fdfefe;
+            --paper: #ffffff;
+            --accent: #1e88e5;
+            --text: #2c3e50;
+            --correct: #2e7d32;
+            --wrong: #c62828;
+            --input-bg: #e3f2fd;
+        }
+
+        body {
+            background-color: #f1f4f9;
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .instruction {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #795548;
+            border-left: 5px solid #ffc107;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            width: 175px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #90a4ae;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #cfd8dc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #b0bec5; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tom and the Vegetable Juice</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the word in CAPITALS to complete the story (Tasks 1–9).
+    </div>
+
+    <input type="text" id="userName" placeholder="Type Student Name...">
+
+    <div class="full-text">
+        Tom woke up relatively early. But he 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">UNDERSTAND (1)</span>
+        </div> 
+        at once that he was not the first awake. 
+        <br><br>
+        Tom found that his dad was in the kitchen – he 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">CUT (2)</span>
+        </div> 
+        vegetables. It was strange – everyone knew that dad 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">NOT LIKE (3)</span>
+        </div> 
+        cooking. 
+        <br><br>
+        “I wish I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">KNOW (4)</span>
+        </div> 
+        what you are doing,” Tom said. Dad gave 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">HE (5)</span>
+        </div> 
+        a smile. 
+        <br><br>
+        The juicing machine 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">COVER (6)</span>
+        </div> 
+        with a thin layer of dust. Dad washed it. He added cucumbers and 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-hint">TOMATO (7)</span>
+        </div>. 
+        <br><br>
+        Dad made three cups. He took one and handed the 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-hint">TWO (8)</span>
+        </div> 
+        cup to Tom. The juice was definitely 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-hint">GOOD (9)</span>
+        </div> 
+        than the stewed vegetables.
+    </div>
+
+    <button id="submitBtn" onclick="checkTomTask()">Submit Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkTomTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solutions = [
+            ["UNDERSTOOD"],
+            ["WAS CUTTING"],
+            ["DID NOT LIKE", "DIDN'T LIKE"],
+            ["KNEW"],
+            ["HIM"],
+            ["WAS COVERED"],
+            ["TOMATOES"],
+            ["SECOND"],
+            ["BETTER"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 8DBD8C Tom Kitchen",
+                    name: uName,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>

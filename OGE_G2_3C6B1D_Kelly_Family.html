@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Word Formation: Kelly's Family</title>
+    <style>
+        /* Шрифт без засечек согласно требованию */
+        :root {
+            --bg: #f5f6fa;
+            --paper: #ffffff;
+            --accent: #273c75;
+            --text: #2f3640;
+            --correct: #44bd32;
+            --wrong: #c23616;
+            --input-bg: #dcdde1;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .instruction {
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            border-left: 5px solid var(--accent);
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: #f1f2f6;
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            width: 190px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #718093;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #dff9fb !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #fab1a0 !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #718093; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Kelly’s Football Evening</h1>
+
+    <div class="instruction">
+        <strong>Word Formation:</strong> Change the word in CAPITALS to fit the context (Tasks 29–34).
+    </div>
+
+    <input type="text" id="userName" placeholder="Enter Student Name...">
+
+    <div class="full-text">
+        Kelly’s family loved to watch football. Sometimes they watched college games, but normally they watched 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">PROFESSION (29)</span>
+        </div> 
+        teams play. Two teams were playing in the final match of the 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">CHAMPION (30)</span>
+        </div>. 
+        <br><br>
+        Kelly’s favourite team got to the final, which 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">RARE (31)</span>
+        </div> 
+        happened. “They’re going to win! It will be 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">FAIR (32)</span>
+        </div> 
+        if they lose!” Kelly thought. 
+        <br><br>
+        Uncle Jolyon had brought a 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">SPICE (33)</span>
+        </div> 
+        cheese sauce and chips. When the game started, everyone cheered. It seemed to Kelly that every 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">PLAY (34)</span>
+        </div> 
+        of her team was doing their best.
+    </div>
+
+    <button id="submitBtn" onclick="checkKellyTask()">Verify Answers</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkKellyTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        const solutions = [
+            ["PROFESSIONAL"],
+            ["CHAMPIONSHIP"],
+            ["RARELY"],
+            ["UNFAIR"],
+            ["SPICY"],
+            ["PLAYER"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 6`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G2 3C6B1D Kelly Family",
+                    name: uName,
+                    score: score + "/6",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>

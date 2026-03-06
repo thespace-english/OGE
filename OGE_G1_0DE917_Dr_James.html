@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE Grammar: Dr. James (Updated)</title>
+    <style>
+        /* Шрифт без засечек согласно требованию */
+        :root {
+            --bg: #eceff1;
+            --paper: #ffffff;
+            --accent: #455a64;
+            --text: #263238;
+            --correct: #43a047;
+            --wrong: #e53935;
+            --input-bg: #f5f5f5;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: var(--paper);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 10px solid var(--accent);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .instruction {
+            background: #cfd8dc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #37474f;
+        }
+
+        .full-text {
+            font-size: 19px;
+            text-align: justify;
+        }
+
+        .gap-box {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        input[type="text"].gap {
+            border: none;
+            border-bottom: 2px solid var(--accent);
+            background: var(--input-bg);
+            padding: 2px 8px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            width: 185px;
+            text-align: center;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .base-hint {
+            display: block;
+            font-size: 10px;
+            color: #78909c;
+            font-weight: bold;
+            margin-top: -2px;
+        }
+
+        .is-correct { background-color: #e8f5e9 !important; border-bottom-color: var(--correct) !important; color: var(--correct); }
+        .is-wrong { background-color: #ffebee !important; border-bottom-color: var(--wrong) !important; color: var(--wrong); }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #b0bec5;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #submitBtn:disabled { background: #b0bec5; }
+        #finalResult { margin-top: 25px; text-align: center; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dr. James and the Snowstorm</h1>
+
+    <div class="instruction">
+        <strong>Grammar Task:</strong> Change the word in CAPITALS to complete the story.
+    </div>
+
+    <input type="text" id="userName" placeholder="Enter Student Name...">
+
+    <div class="full-text">
+        The weatherman said that it was going to stay cold for several days. According to him, the roads 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans0">
+            <span class="base-hint">BE (1)</span>
+        </div> 
+        very dangerous because of the snow and ice.
+        <br><br>
+        Dr. James 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans1">
+            <span class="base-hint">NOT CAN (2)</span>
+        </div> 
+        stay at home. He worked in a hospital. Everything 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans2">
+            <span class="base-hint">COVER (3)</span>
+        </div> 
+        with snow. 
+        <br><br>
+        “Wow,” he said. “I wish I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans3">
+            <span class="base-hint">HAVE (4)</span>
+        </div> 
+        a reindeer instead of my old car.” 
+        <br><br>
+        When Dr. James 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans4">
+            <span class="base-hint">DRIVE (5)</span>
+        </div> 
+        slowly to work, he saw an accident. He stopped and 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans5">
+            <span class="base-hint">RUN (6)</span>
+        </div> 
+        to the damaged car. 
+        <br><br>
+        There was a man and two 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans6">
+            <span class="base-hint">CHILD (7)</span>
+        </div> 
+        inside. “I 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans7">
+            <span class="base-hint">CALL (8)</span>
+        </div> 
+        911 already. They are coming to help 
+        <div class="gap-box">
+            <input type="text" class="gap" id="ans8">
+            <span class="base-hint">WE (9)</span>
+        </div>.”
+    </div>
+
+    <button id="submitBtn" onclick="checkJamesTask()">Verify Answers</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    async function checkJamesTask() {
+        const uName = document.getElementById('userName').value.trim();
+        if(!uName) { alert("Please enter your name!"); return; }
+
+        let score = 0;
+        let details = [];
+        
+        // Добавлен вариант WERE в первый массив ответов
+        const solutions = [
+            ["WOULD BE", "WERE"],
+            ["COULD NOT", "COULDN'T"],
+            ["WAS COVERED"],
+            ["HAD"],
+            ["WAS DRIVING"],
+            ["RAN"],
+            ["CHILDREN"],
+            ["HAVE CALLED", "'VE CALLED"],
+            ["US"]
+        ];
+
+        solutions.forEach((keys, i) => {
+            const input = document.getElementById('ans' + i);
+            const val = input.value.trim().toUpperCase();
+            
+            if(keys.includes(val)) {
+                input.classList.add('is-correct');
+                score++;
+            } else {
+                input.classList.add('is-wrong');
+            }
+            input.disabled = true;
+            details.push(val || "EMPTY");
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Final Score: ${score} / 9`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            await fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE G1 0DE917 Dr. James (Updated)",
+                    name: uName,
+                    score: score + "/9",
+                    details: details.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+</script>
+
+</body>
+</html>
