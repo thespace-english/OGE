@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Task: What Do Teenagers Read?</title>
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --paper: #ffffff;
+            --accent: #2c3e50;
+            --selection: #3498db; /* Нейтральный синий для выбора */
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --text: #2c3e50;
+            --border: #dcdde1;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background: var(--paper);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .user-info {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        h1 { text-align: center; color: var(--accent); margin-bottom: 30px; }
+
+        .reading-text {
+            background: #fff;
+            padding: 25px;
+            border-left: 5px solid var(--accent);
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .question-text { font-weight: 600; font-size: 17px; margin-bottom: 15px; }
+
+        .options { display: flex; gap: 12px; }
+
+        .opt-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        /* Стиль при выборе (до проверки) */
+        .opt-btn.active {
+            background-color: var(--selection) !important;
+            color: #fff !important;
+            border-color: var(--selection) !important;
+        }
+
+        /* Стили после проверки */
+        .is-correct {
+            background-color: var(--correct) !important;
+            color: #fff !important;
+            border-color: var(--correct) !important;
+        }
+
+        .is-wrong {
+            background-color: var(--wrong) !important;
+            color: #fff !important;
+            border-color: var(--wrong) !important;
+        }
+
+        .should-have-been {
+            border: 3px solid var(--correct) !important;
+            background-color: #e8f5e9 !important;
+            color: var(--correct) !important;
+        }
+
+        #submitBtn {
+            width: 100%;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        #submitBtn:disabled { opacity: 0.5; }
+        
+        #finalResult { 
+            margin-top: 30px; 
+            text-align: center; 
+            font-size: 26px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="user-info">
+        <label for="userName">Student Name:</label>
+        <input type="text" id="userName" placeholder="Enter your name to start...">
+    </div>
+
+    <h1>Reading Practice 50F359</h1>
+    
+    <div class="reading-text">
+        <h2>What Do Teenagers Read?</h2>
+        <p>Writing essays is not my favourite pastime... (текст сокращен для краткости в коде, но в файле он будет полным)</p>
+        <p>Writing essays is not my favourite pastime. I prefer solving maths problems or running my blog. You may say that writing for a blog and writing essays are just the same, but they’re not!</p>
+        <p>Anyway, today we’ve got an assignment to write an essay about what genres teenagers prefer to read. At first, I wanted to write that teenagers do not like reading at all, and that is why they have no favourite genres. However, I then thought that the common belief that teenagers do not read may be just a stereotype, and not a fact. Indeed, a lot of senior people complain that we read much less than they did, but where is the proof? Has anyone ever done any research? Are there any figures, graphs, or diagrams proving that contemporary kids read less than teenagers sixty years ago, or how much less?</p>
+        <p>Feeling intrigued, I decided to search the web. Guess what! I was right – nobody has provided any evidence. I did not find any figures. But what I did find was a list of teenagers’ favourite genres! The list was generated by AI, of course, but it provides some interesting information to consider. So, according to AI, fantasy and adventure books are at the top of the list, and I agree with that completely. I also prefer stories about magic, quests for hidden keys, and portals to any other kinds of books.</p>
+        <p>The next in rank are love stories, books about relationships, and challenges of teenage romance, and here, my personal preferences do not coincide with my AI assistant’s choice. Not at all! I never read love stories, finding them too boring, and I was surprised to find out that they are so popular. On the other hand, why shouldn’t they be? My sister loves them, and her friends do, too. To be precise, the girls prefer watching romantic films to reading romantic books, but, anyway, the genre is the same.</p>
+        <p>Thrillers and crime stories are third in popularity. For some reason, this genre has always been popular with people of all ages. Just remember the queen of detective stories, Agatha Christie. I don’t think there’s any person who has never read any of her books – except for my sister, maybe. There are a few Agatha Christie books in our home library, but only mum can read them. Do you wonder why? Because they are in French, and mum is the only one in our family who knows French. I study Italian at school, but my level doesn’t allow me to read Italian books in the original. Probably, in a couple of years, I’ll be able to do it.</p>
+        <p>Science-fiction books take only fourth place in the ratings. At first, I thought AI was mistaken, but then I agreed with it. Our technological reality is breathtaking, and recent discoveries are so unbelievable and exciting, that science-fiction books cannot compete with science journals.</p>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button id="submitBtn" onclick="checkAnswers()">Check Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    const taskData = [
+        { q: "The narrator writes mainly about school life in the blog.", a: 3 },
+        { q: "The narrator has found convincing evidence that today’s teenagers read less than their grandparents did.", a: 2 },
+        { q: "The narrator’s favourite genre is fantasy and adventure books.", a: 1 },
+        { q: "The narrator’s sister is younger than him.", a: 3 },
+        { q: "The narrator’s sister is fond of books about romance and relationships.", a: 1 },
+        { q: "The narrator reads books in Italian and French.", a: 2 },
+        { q: "According to the narrator, nowadays science fiction is less popular than detective stories.", a: 1 }
+    ];
+
+    let userChoices = new Array(taskData.length).fill(null);
+
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
+        taskData.forEach((item, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-item';
+            qDiv.innerHTML = `
+                <div class="question-text">${index + 1}. ${item.q}</div>
+                <div class="options">
+                    <button class="opt-btn" onclick="makeChoice(${index}, 1)">1 - True</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 2)">2 - False</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 3)">3 - Not Stated</button>
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function makeChoice(qIdx, choice) {
+        userChoices[qIdx] = choice;
+        const buttons = document.querySelectorAll('.question-item')[qIdx].querySelectorAll('.opt-btn');
+        buttons.forEach((btn, i) => {
+            btn.classList.remove('active');
+            if (i + 1 === choice) btn.classList.add('active');
+        });
+    }
+
+    async function checkAnswers() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Please enter your name!"); return; }
+        if (userChoices.includes(null)) { alert("Answer all questions!"); return; }
+
+        let score = 0;
+        const questions = document.querySelectorAll('.question-item');
+
+        taskData.forEach((item, i) => {
+            const buttons = questions[i].querySelectorAll('.opt-btn');
+            const userSelection = userChoices[i];
+            const correctSelection = item.a;
+
+            buttons.forEach((btn, btnIdx) => {
+                const currentVal = btnIdx + 1;
+                btn.classList.remove('active'); // Убираем синий цвет выбора
+                btn.disabled = true;
+
+                if (currentVal === userSelection) {
+                    if (userSelection === correctSelection) {
+                        btn.classList.add('is-correct');
+                        score++;
+                    } else {
+                        btn.classList.add('is-wrong');
+                    }
+                } else if (currentVal === correctSelection) {
+                    // Подсвечиваем правильный ответ, если ученик ошибся
+                    btn.classList.add('should-have-been');
+                }
+            });
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Score: ${score} / ${taskData.length}`;
+        
+        // Отправка в Google Таблицу
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            fetch(logURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    gameTitle: "OGE Reading 50F359 Teenagers",
+                    name: name,
+                    score: score + "/7",
+                    details: userChoices.join(', ')
+                })
+            });
+        } catch(e) {}
+    }
+
+    renderQuiz();
+</script>
+
+</body>
+</html>
