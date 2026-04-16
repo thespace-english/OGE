@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE_R2_D452AA_The_Knights_of_Camelot</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --paper: #ffffff;
+            --accent: #2c3e50;
+            --selection: #3498db; 
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --text: #2c3e50;
+            --border: #dcdde1;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background: var(--paper);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .user-info {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .reading-text {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-left: 5px solid var(--accent);
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        .reading-text h2 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .opt-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .opt-btn.active {
+            background-color: var(--selection) !important;
+            color: #fff !important;
+            border-color: var(--selection) !important;
+        }
+
+        .is-correct {
+            background-color: var(--correct) !important;
+            color: #fff !important;
+            border-color: var(--correct) !important;
+        }
+
+        .is-wrong {
+            background-color: var(--wrong) !important;
+            color: #fff !important;
+            border-color: var(--wrong) !important;
+        }
+
+        .should-be {
+            border: 3px solid var(--correct) !important;
+            background-color: #e8f5e9 !important;
+            color: var(--correct) !important;
+        }
+
+        #submitBtn {
+            width: 100%;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        #finalResult { 
+            margin-top: 30px; 
+            text-align: center; 
+            font-size: 26px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="user-info">
+        <label for="userName">Student Name:</label>
+        <input type="text" id="userName" placeholder="Enter your name here...">
+    </div>
+
+    <h1>OGE_R2_D452AA_The_Knights_of_Camelot</h1>
+    
+    <div class="reading-text">
+        <h2>The Knights of Camelot</h2>
+        <p>The story about Camelot, the kingdom ruled by King Arthur, is popular with writers and film producers. You have probably seen films and serials about it, and such names as Queen Guinevere and Sir Lancelot sound familiar. Some people believe they were real, while others think Camelot and its inhabitants were only a legend.</p>
+        <p>There is no real proof that Camelot ever existed. Historians and archaeologists have searched for it, but they have not found any clear evidence. Anyway, they do not give up, and believe that Camelot was probably inspired by real places in Britain. Possible locations that researchers suggest are an old hill fort, where local legends say Arthur once lived, and a Roman fortress town connected with old Arthurian tales.</p>
+        <p>Despite the absence of material evidence, there are many references to Camelot in literature. Camelot was mentioned for the first time in the 12th century by a French writer, and there were other stories and poems after that. They differ a lot, as the storytellers added their own vision and interpretation of the events. The things that all the versions have in common are the famous sword, Excalibur, and the Round Table.</p>
+        <p>Excalibur was not an ordinary sword. Its name comes from Latin and French words meaning ‘cut steel.’ For a long time, it had been stuck in a large stone and nobody could pull it out. The old tale said that only the true king would be able to do that, and Arthur proved to be that king. He pulled the sword out of the stone, and the people of the kingdom gladly accepted their young ruler. According to other stories, however, it was the Lady of the Lake who gave the sword to Arthur as a magical gift. When Arthur died, Excalibur was returned to her.</p>
+        <p>The Round Table, another symbol of Camelot, was the place where Arthur and his knights gathered. In some films, it is featured as a massive rock or stone construction, but the old legends insist that the huge table was made of wood. Yes, it was created from a single large piece of oak, and all sorts of golden ornaments and other decorations were added by storytellers much later. The table had no head or end, which meant that all the knights were equal, and as important as the king himself.</p>
+        <p>Camelot was meant to become the Kingdom of brave, generous and free people, but in the end, the dream began to fall apart. The unity of the Round Table was broken, and Arthur fought his last battle against his own knight. Arthur was badly wounded and carried to the island of Avalon, where he still rests. Nobody has ever seen his grave yet, and even the legends do not give us any clue about exactly where it might be. Some legends, however, say that King Arthur will return one day, when Britain needs him again.</p>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button id="submitBtn" onclick="checkAnswers()">Check Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    const taskTitle = "OGE_R2_D452AA_The_Knights_of_Camelot";
+    const taskData = [
+        { q: "Most films about King Arthur and Camelot were made in Britain.", a: 3 },
+        { q: "Scientists and researchers managed to find the place where Camelot had been.", a: 2 },
+        { q: "The French writer who first described Camelot was inspired by an old Roman fortress town.", a: 3 },
+        { q: "There is NO universal story about King Arthur’s life.", a: 1 },
+        { q: "The name of Arthur’s sword can be translated as a magical gift.", a: 2 },
+        { q: "According to the legends, the Round Table was wooden.", a: 1 },
+        { q: "King Arthur was buried in the Castle of Camelot.", a: 2 }
+    ];
+
+    let userChoices = new Array(taskData.length).fill(null);
+
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
+        taskData.forEach((item, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-item';
+            qDiv.innerHTML = `
+                <div class="question-text">${index + 1}. ${item.q}</div>
+                <div class="options">
+                    <button class="opt-btn" onclick="makeChoice(${index}, 1)">1 - True</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 2)">2 - False</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 3)">3 - Not Stated</button>
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function makeChoice(qIdx, choice) {
+        userChoices[qIdx] = choice;
+        const buttons = document.querySelectorAll('.question-item')[qIdx].querySelectorAll('.opt-btn');
+        buttons.forEach((btn, i) => {
+            btn.classList.remove('active');
+            if (i + 1 === choice) btn.classList.add('active');
+        });
+    }
+
+    async function checkAnswers() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Please enter your name!"); return; }
+        if (userChoices.includes(null)) { alert("Please answer all questions!"); return; }
+
+        let score = 0;
+        const questions = document.querySelectorAll('.question-item');
+
+        taskData.forEach((item, i) => {
+            const buttons = questions[i].querySelectorAll('.opt-btn');
+            const userSelection = userChoices[i];
+            const correctSelection = item.a;
+
+            buttons.forEach((btn, btnIdx) => {
+                const val = btnIdx + 1;
+                btn.disabled = true;
+                btn.classList.remove('active');
+
+                if (val === userSelection) {
+                    if (val === correctSelection) {
+                        btn.classList.add('is-correct');
+                        score++;
+                    } else {
+                        btn.classList.add('is-wrong');
+                    }
+                } else if (val === correctSelection) {
+                    btn.classList.add('should-be');
+                }
+            });
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Score: ${score} / 7`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            fetch(logURL, {
+                method: 'POST', mode: 'no-cors',
+                body: JSON.stringify({ 
+                    gameTitle: taskTitle, 
+                    name: name, 
+                    score: score + "/7", 
+                    details: userChoices.join(', ') 
+                })
+            });
+        } catch(e) {}
+    }
+
+    renderQuiz();
+</script>
+
+</body>
+</html>
