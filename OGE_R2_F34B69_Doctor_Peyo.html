@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGE_R2_F34B69_Doctor_Peyo</title>
+    <style>
+        :root {
+            --bg: #f0f4f8;
+            --paper: #ffffff;
+            --accent: #2c3e50;
+            --selection: #3498db; 
+            --correct: #27ae60;
+            --wrong: #e74c3c;
+            --text: #334e68;
+            --border: #d1d9e6;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background: var(--paper);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .user-info {
+            background: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        #userName {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .reading-text {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #edf2f7;
+            border-left: 6px solid var(--accent);
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        .reading-text h2 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .opt-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        /* Выбор ученика */
+        .opt-btn.active {
+            background-color: var(--selection) !important;
+            color: #fff !important;
+            border-color: var(--selection) !important;
+        }
+
+        /* Результаты */
+        .is-correct {
+            background-color: var(--correct) !important;
+            color: #fff !important;
+            border-color: var(--correct) !important;
+        }
+
+        .is-wrong {
+            background-color: var(--wrong) !important;
+            color: #fff !important;
+            border-color: var(--wrong) !important;
+        }
+
+        .should-be {
+            border: 3px solid var(--correct) !important;
+            background-color: #f0fff4 !important;
+            color: var(--correct) !important;
+        }
+
+        #submitBtn {
+            width: 100%;
+            padding: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        #finalResult { 
+            margin-top: 30px; 
+            text-align: center; 
+            font-size: 28px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="user-info">
+        <label for="userName">Student Name:</label>
+        <input type="text" id="userName" placeholder="Type your name here...">
+    </div>
+
+    <h1>OGE_R2_F34B69_Doctor_Peyo</h1>
+    
+    <div class="reading-text">
+        <h2>Doctor Peyo</h2>
+        <p>It is a common belief that cats, dogs and other pets can help people feel happier and healthier. This story is about Peyo, a horse that treats people. He belongs to a breed called the Arab-Barb, which was created in North Africa. The horses of this breed are strong, elegant, and temperamental. They are considered excellent for riding. Peyo, however, was born in Europe and is not just known for his strength and beauty, but also for his unique ability to comfort people who are seriously ill. Peyo became a celebrity in medicine, though his career started ordinarily for a sports horse.</p>
+        <p>Peyo’s owner and trainer, Hassen Bouchakour, started working with him about two decades ago. He prepared the young horse for competitions and shows. Peyo galloped, jumped, and performed in different sports and cultural events, showcasing impressive tricks such as dancing, bowing, and even walking on his hind legs. But over time, something unusual began to happen.</p>
+        <p>Once, after a show, Peyo walked away from his trainer and approached a man from the audience. The horse stood quietly beside the person for a long time. The trainer was very much surprised by Peyo’s behaviour. The man, who was seriously ill, said that the horse’s presence made him feel better. His pain was released.</p>
+        <p>That wasn’t the end of the story. His trainer noticed that Peyo tended to stand near people with visible or even invisible health problems. Amazingly, the horse was able to detect people with serious illnesses even before their diagnoses were known. Doctors were curious about the extraordinary abilities of the horse, but were not able to explain them.</p>
+        <p>Meanwhile, Peyo has changed his career dramatically. He is not a sports horse anymore. Now, Peyo and his trainer work in a hospital. There, Peyo calmly walks through the halls and gently enters patients’ rooms. He chooses who to visit, without any direction from his trainer. He finds the patients who need him most and brings them peace and even joy.</p>
+        <p>The doctors and nurses affectionately call the horse Doctor Peyo. They say that Peyo’s presence has visible effects: it reduces patients’ heart rates and blood pressure. It releases pain, which means lower doses of painkilling medication are needed. Some patients who have not spoken or smiled for days relax and smile when the horse is near.</p>
+        <p>Scientists are still studying Peyo’s behaviour. They want to understand how animals like him can help cure people, and believe that his natural ability to connect with people could improve future therapy programs that involve animals.</p>
+        <p>When not working, Peyo lives on a quiet farm, where he can rest and run with other horses. His trainer provides healthy food and good medical care.</p>
+        <p>Peyo is a real celebrity. Videos with him have gone viral online, and his story inspires people. He shows us that healing does not only come from medicine, but sometimes comes from a gentle heart and soft touch.</p>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button id="submitBtn" onclick="checkAnswers()">Check Results</button>
+    <div id="finalResult"></div>
+</div>
+
+<script>
+    const taskTitle = "OGE_R2_F34B69_Doctor_Peyo";
+    const taskData = [
+        { q: "Peyo was born in North Africa.", a: 2 },
+        { q: "Peyo used to take part in horse shows and public events.", a: 1 },
+        { q: "The trainer chose the first patient for Peyo to help.", a: 2 },
+        { q: "Most people Peyo approached were diagnosed with heart problems.", a: 3 },
+        { q: "When Peyo works in the hospital, he visits more than ten patients a day.", a: 3 },
+        { q: "It is possible to measure the results of Peyo’s work in the hospital.", a: 1 },
+        { q: "As the patients need him very often, Peyo lives in the hospital yard all the time.", a: 2 }
+    ];
+
+    let userChoices = new Array(taskData.length).fill(null);
+
+    function renderQuiz() {
+        const container = document.getElementById('quiz-container');
+        taskData.forEach((item, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-item';
+            qDiv.innerHTML = `
+                <div class="question-text">${index + 1}. ${item.q}</div>
+                <div class="options">
+                    <button class="opt-btn" onclick="makeChoice(${index}, 1)">1 - True</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 2)">2 - False</button>
+                    <button class="opt-btn" onclick="makeChoice(${index}, 3)">3 - Not Stated</button>
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+    }
+
+    function makeChoice(qIdx, choice) {
+        userChoices[qIdx] = choice;
+        const buttons = document.querySelectorAll('.question-item')[qIdx].querySelectorAll('.opt-btn');
+        buttons.forEach((btn, i) => {
+            btn.classList.remove('active');
+            if (i + 1 === choice) btn.classList.add('active');
+        });
+    }
+
+    async function checkAnswers() {
+        const name = document.getElementById('userName').value.trim();
+        if (!name) { alert("Please enter your name!"); return; }
+        if (userChoices.includes(null)) { alert("Answer all questions!"); return; }
+
+        let score = 0;
+        const questions = document.querySelectorAll('.question-item');
+
+        taskData.forEach((item, i) => {
+            const buttons = questions[i].querySelectorAll('.opt-btn');
+            const userSelection = userChoices[i];
+            const correctSelection = item.a;
+
+            buttons.forEach((btn, btnIdx) => {
+                const val = btnIdx + 1;
+                btn.disabled = true;
+                btn.classList.remove('active');
+
+                if (val === userSelection) {
+                    if (val === correctSelection) {
+                        btn.classList.add('is-correct');
+                        score++;
+                    } else {
+                        btn.classList.add('is-wrong');
+                    }
+                } else if (val === correctSelection) {
+                    btn.classList.add('should-be');
+                }
+            });
+        });
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('finalResult').innerHTML = `Score: ${score} / 7`;
+
+        const logURL = 'https://script.google.com/macros/s/AKfycbwNegVEtisS1Rp7oNWC90Z0KSNkoXvx0KAglX0QtOW3G7CD3NZuqnX0oXJo5ZxNIU4w/exec';
+        try {
+            fetch(logURL, {
+                method: 'POST', mode: 'no-cors',
+                body: JSON.stringify({ 
+                    gameTitle: taskTitle, 
+                    name: name, 
+                    score: score + "/7", 
+                    details: userChoices.join(', ') 
+                })
+            });
+        } catch(e) {}
+    }
+
+    renderQuiz();
+</script>
+
+</body>
+</html>
